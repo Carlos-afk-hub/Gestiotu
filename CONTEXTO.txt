@@ -1,0 +1,53 @@
+GESTIOTU - CONTEXTO DEL PROYECTO
+================================
+
+PROPOSITO
+---------
+Sitio web estatico en espanol sobre organizacion personal y calidad de vida. Presenta herramientas para administrar el tiempo, organizar la economia, planificar comidas, hacer ejercicio y cuidar el bienestar.
+
+ESTRUCTURA
+----------
+Index.html                 Inicio, guia de uso y cinco categorias.
+contacto.html              Formulario de contacto y accesos directos.
+configuracion.html         Preferencias organizadas por secciones.
+sobre-nosotros.html        Historia, mision, vision, uso y autor confirmado.
+servicios/tiempo.html      Temporizador, calendario, recordatorios y horario semanal.
+servicios/economia.html    Calculadora, referencia porcentual y fuentes financieras.
+servicios/alimentacion.html Plan de cinco comidas, registro, balance e indicadores.
+servicios/ejercicio.html   Rutina inicial, racha semanal y estimacion de actividad.
+servicios/salud.html       Registro de bienestar, fuentes y planificador de consulta.
+CSS/Styles.css             Tokens visuales, diseno compartido y reglas responsive.
+JS/gestiotu.js             Preferencias y comportamiento interactivo de las paginas.
+IMG/                       Fotografias e iconos existentes.
+
+NAVEGACION Y RUTAS
+------------------
+Los accesos de categorias y las tarjetas Explorar del inicio apuntan a sus cinco paginas correspondientes dentro de servicios/.
+Cada pagina de servicio ofrece enlaces para volver al inicio, a la categoria y a las secciones principales del sitio.
+Los enlaces HTML usan rutas relativas. El archivo de inicio se llama index.html.
+
+COMPORTAMIENTOS
+---------------
+- Configuracion permite cambiar tema, tamano de texto, contraste, movimiento, categorias visibles, opciones de contacto/contenido y preferencias de Tiempo, Economia, Alimentacion y Ejercicio.
+- Las preferencias del sitio se guardan en localStorage con la clave gestiotu.preferences.v1.
+- cuenta.html ofrece un registro e inicio de sesion de demostracion local. Las cuentas (con contrasenas derivadas mediante PBKDF2) y el rol se guardan en localStorage; la primera cuenta del navegador es administradora. El panel desplegable Editar sitio aparece en los encabezados para esa cuenta y sincroniza fondo solido/degradado, tipografia y color de titulos mediante gestiotu.site-design.v1.
+- El registro, los roles y el panel de edicion no son autenticacion ni autorizacion seguras: no hay servidor, base de datos ni proteccion contra la manipulacion local, y el diseno solo se aplica en ese navegador. No usar con contrasenas reales ni datos sensibles; se requiere un backend para publicar como servicio real.
+- Tiempo permite un temporizador, muestra festivos nacionales de Colombia desde Nager.Date, guarda recordatorios y bloques semanales, y exporta recordatorios como .ics. Las notificaciones del navegador solo funcionan mientras el sitio esta abierto y autorizadas; el .ics se importa a una app de calendario.
+- Economia calcula saldos y una referencia 50/30/20, convierte divisas con tasas de referencia en linea de ExchangeRate-API y enlaza noticias y novedades de instituciones oficiales. Las tasas pueden tener retraso; no hay recomendaciones de inversion.
+- Alimentacion propone cinco momentos de comida, registra alimentos en localStorage, permite organizar porcentajes por grupos y ofrece una referencia de IMC para adultos. No crea dietas ni diagnosticos.
+- Ejercicio propone rutinas iniciales, calcula gasto calorico aproximado con MET, guarda actividad semanal y permite planear horarios y enfoque de entrenamiento de lunes a sabado en localStorage. El horario se puede imprimir o guardar como PDF desde el navegador. No es una evaluacion medica.
+- Salud registra momentos semanales de bienestar, explica brevemente temas seleccionados en su buscador y ofrece busquedas web por tema en Google acotadas a OMS/Minsalud cuando no hay una descripcion local, permite buscar centros en Maps y exportar consultas .ics. Los enlaces externos comparten el tema buscado con el sitio de destino; no interpreta sintomas ni diagnostica.
+- El registro semanal de salud usa la clave gestiotu.wellbeing-week.v1; el horario de ejercicio usa gestiotu.exercise-schedule.v1. Agenda, actividad y alimentos tambien usan claves locales separadas.
+- Contacto solicita nombre, telefono, motivo y mensaje; correo y servicio relacionado son opcionales. Valida y abre el programa de correo mediante mailto; no hay servidor para enviar formularios.
+
+DISENO Y MANTENIMIENTO
+----------------------
+- Mantener la identidad editorial clara: titulares serif, texto sans serif, superficies blancas y grises y acentos discretos.
+- Reutilizar variables CSS y componentes de CSS/Styles.css antes de crear estilos duplicados.
+- Las paginas de servicios cargan la hoja y el script usando rutas ../CSS/Styles.css y ../JS/gestiotu.js.
+- Para actualidad financiera y sanitaria se enlazan instituciones externas; los datos pueden cambiar y requieren conexion. El conversor de divisas requiere internet para consultar tasas de referencia.
+- El calendario nacional de festivos depende de Nager.Date y muestra un estado si el servicio no esta disponible.
+- Actualizar index.html si se cambia el nombre o la ruta de una pagina de servicio.
+- Los enlaces de WhatsApp usan actualmente el numero +57 321 456 7890; cambiarlo en los href wa.me y tel si corresponde.
+- WhatsApp abre el contacto configurado; Facebook permite compartir la pagina actual cuando esta publicada en una direccion web y avisa si se abre como archivo local. Instagram usa el menu nativo para compartir cuando esta disponible, con apertura de Instagram como alternativa. No se han configurado perfiles propios de Facebook o Instagram.
+- El proyecto no usa framework, compilacion, base de datos ni backend; se puede abrir como archivos HTML locales.

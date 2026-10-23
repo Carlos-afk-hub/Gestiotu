@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Alimentación | GESTIOTU</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;430;450;480;500&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../CSS/Styles.css">
+</head>
+<body>
+	<div class="pagina">
+		<header class="encabezado">
+			<a class="logo" href="../index.html"><h1>GESTIOTU</h1><p>Alimentación</p></a>
+			<nav class="menu" aria-label="Navegación principal"><a href="../index.html"><span>INICIO</span></a><a href="../contacto.html"><span>CONTACTO</span></a><a href="../configuracion.html"><span>CONFIG</span></a><a href="../sobre-nosotros.html"><span>NOSOTROS</span></a></nav>
+		</header>
+
+		<main class="service-page">
+			<nav class="service-breadcrumbs" aria-label="Ruta"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Alimentación</span></nav>
+			<section class="service-hero">
+				<div class="service-intro">
+					<p class="service-eyebrow">ALIMENTACIÓN · PLANIFICACIÓN</p>
+					<h2 class="service-heading">Ideas sencillas para tu semana.</h2>
+					<p class="service-lede">Arma un punto de partida para tus comidas según el tiempo y las preferencias que tengas hoy.</p>
+					<a class="btn-pill btn-ghost service-back" href="../index.html#categorias-alimentacion">Volver a categorías</a>
+				</div>
+
+				<section class="service-widget meal-widget" data-meal-widget aria-labelledby="meal-title">
+					<div class="service-widget-topline"><p id="meal-title">CINCO MOMENTOS DEL DÍA</p><span>03 / 05</span></div>
+					<label class="service-field" for="meal-style">¿Qué te gustaría priorizar?</label>
+					  <select class="service-select" id="meal-style" data-meal-style data-setting="mealPreference">
+						<option value="equilibrada">Un día equilibrado</option>
+						<option value="vegetariana">Opciones vegetarianas</option>
+						<option value="rapida">Preparaciones rápidas</option>
+					</select>
+					<div class="meal-results" data-meal-results aria-live="polite">
+						<article><span>DESAYUNO</span><p>Avena con fruta y yogur</p></article>
+						<article><span>MEDIA MAÑANA</span><p>Fruta y agua</p></article>
+						<article><span>ALMUERZO</span><p>Arroz, legumbres y ensalada</p></article>
+						<article><span>ONCES</span><p>Arepa con queso</p></article>
+						<article><span>CENA</span><p>Tortilla de verduras y arepa</p></article>
+					</div>
+					<button class="btn-pill btn-filled" type="button" data-meal-generate>Proponer otro día</button>
+					<p class="service-status" data-meal-status role="status" aria-live="polite">Las ideas se pueden ajustar a tus ingredientes y necesidades.</p>
+					<p class="service-disclaimer">Ideas generales, no un plan nutricional personalizado. Adáptalas a tus necesidades y consulta a un profesional si lo requieres.</p>
+				</section>
+			</section>
+
+			<section class="service-widget food-planning-tools" aria-label="Herramientas de alimentación">
+				<div>
+					<p class="service-eyebrow">BALANCE VISUAL</p>
+					<h2 class="tool-section-title">Distribuye tus grupos de alimentos.</h2>
+					<p class="service-widget-note">Ajusta porcentajes hasta completar 100. Es una organización visual, no una pauta nutricional.</p>
+				</div>
+				<div class="food-balance-grid" data-food-balance>
+					<label class="service-field" for="food-cereals">Cereales y tubérculos (%)<input class="service-number" id="food-cereals" data-food-group type="number" min="0" max="100" value="25"></label>
+					<label class="service-field" for="food-produce">Frutas y verduras (%)<input class="service-number" id="food-produce" data-food-group type="number" min="0" max="100" value="25"></label>
+					<label class="service-field" for="food-protein">Proteínas (%)<input class="service-number" id="food-protein" data-food-group type="number" min="0" max="100" value="25"></label>
+					<label class="service-field" for="food-other">Otros alimentos (%)<input class="service-number" id="food-other" data-food-group type="number" min="0" max="100" value="25"></label>
+				</div>
+				<p class="service-status" data-food-balance-status role="status" aria-live="polite">Distribución: 100 %. Ajusta los valores según tus preferencias.</p>
+				<progress class="timer-progress" data-food-balance-progress max="100" value="100" aria-label="Porcentaje total distribuido"></progress>
+				<form class="food-log-form" data-food-log-form>
+					<h3>Registro personal de hoy</h3>
+					<p class="service-widget-note">Este registro se guarda en tu cuenta (o en este navegador si no inicias sesión). No contiene una base de datos nutricional.</p>
+					<label class="service-field" for="food-log-meal">Momento<select class="service-select" id="food-log-meal" name="meal"><option>Desayuno</option><option>Media mañana</option><option>Almuerzo</option><option>Onces</option><option>Cena</option></select></label>
+					<div class="food-log-inputs">
+						<label class="service-field" for="food-log-name">Alimento<input class="service-number" id="food-log-name" name="food" placeholder="Ejemplo: arroz" maxlength="60" required></label>
+						<label class="service-field" for="food-log-amount">Cantidad o porción<input class="service-number" id="food-log-amount" name="amount" placeholder="Ejemplo: 1 taza" maxlength="40" required></label>
+					</div>
+					<div class="service-actions"><button class="btn-pill btn-filled" type="submit">Añadir al registro</button><button class="btn-pill btn-ghost" type="button" data-food-log-clear>Limpiar hoy</button></div>
+					<ul class="food-log-list" data-food-log-list aria-label="Alimentos registrados hoy"></ul>
+					<p class="service-status" data-food-log-status role="status" aria-live="polite">Registra lo que comiste como referencia personal.</p>
+				</form>
+			</section>
+
+			<section class="service-widget bmi-widget" data-bmi-widget aria-labelledby="bmi-title">
+				<div>
+					<p class="service-eyebrow">INDICADOR ADULTO</p>
+					<h2 id="bmi-title" class="tool-section-title">Consulta tu IMC orientativo.</h2>
+					<p class="service-widget-note">Solo para personas adultas; no estima composición corporal ni determina un diagnóstico.</p>
+				</div>
+				<div class="bmi-inputs">
+					<label class="service-field" for="bmi-age">Edad<input class="service-number" id="bmi-age" data-bmi-age type="number" min="18" max="120" value="30"></label>
+					<label class="service-field" for="bmi-weight">Peso (kg)<input class="service-number" id="bmi-weight" data-bmi-weight type="number" min="20" max="300" step="0.1" value="70"></label>
+					<label class="service-field" for="bmi-height">Estatura (cm)<input class="service-number" id="bmi-height" data-bmi-height type="number" min="100" max="250" step="0.1" value="170"></label>
+				</div>
+				<div class="budget-result"><span>IMC aproximado</span><output data-bmi-result aria-live="polite">24,2</output></div>
+				<p class="service-status" data-bmi-status role="status" aria-live="polite">Referencia adulta; embarazo, desarrollo, composición corporal y otros factores cambian su interpretación.</p>
+				<a class="link-arrow" href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight" target="_blank" rel="noopener noreferrer">Criterios y límites de la OMS</a>
+			</section>
+
+			<section class="service-widget food-reminder-widget" aria-labelledby="meal-reminder-title">
+				<div>
+					<p class="service-eyebrow">RECORDATORIO DE COMIDA</p>
+					<h2 id="meal-reminder-title" class="tool-section-title">Lleva el horario a tu calendario.</h2>
+					<p class="service-widget-note">Se descargará un evento diario para importar en tu aplicación de calendario.</p>
+				</div>
+				<form class="meal-reminder-form" data-meal-reminder-form>
+					<label class="service-field" for="meal-reminder-kind">Momento<select class="service-select" id="meal-reminder-kind" name="kind"><option>Desayuno</option><option>Media mañana</option><option>Almuerzo</option><option>Onces</option><option>Cena</option></select></label>
+					<label class="service-field" for="meal-reminder-time">Hora<input class="service-number" id="meal-reminder-time" name="time" type="time" value="08:00" required></label>
+					<button class="btn-pill btn-filled" type="submit">Descargar recordatorio .ics</button>
+				</form>
+				<p class="service-status" data-meal-reminder-status role="status" aria-live="polite">Importa el archivo descargado en tu calendario para activar la alarma diaria.</p>
+			</section>
+
+			<section class="official-resources food-places" aria-labelledby="food-places-title">
+				<p class="service-eyebrow">LUGARES CERCANOS</p>
+				<h2 id="food-places-title">Busca restaurantes en tu zona.</h2>
+				<form class="restaurant-search" data-restaurant-search>
+					<label class="service-field" for="restaurant-location">Ciudad o barrio<input class="service-number" id="restaurant-location" name="location" placeholder="Ejemplo: Bogotá, Chapinero" required></label>
+					<button class="btn-pill btn-ghost" type="submit">Buscar en Maps</button>
+				</form>
+			</section>
+
+			<section class="service-guidance" aria-labelledby="food-guide-title">
+				<p class="service-eyebrow">PLANEAR SIN COMPLICARSE</p>
+				<h2 id="food-guide-title">Una lista corta ayuda mucho.</h2>
+				<div class="service-steps">
+					<article><span>01</span><h3>Revisa</h3><p>Mira qué alimentos ya tienes antes de planear nuevas compras.</p></article>
+					<article><span>02</span><h3>Combina</h3><p>Piensa en una base, una fuente de proteína y algo fresco que disfrutes.</p></article>
+					<article><span>03</span><h3>Adapta</h3><p>Deja espacio para cambiar el plan según tu horario y apetito.</p></article>
+				</div>
+			</section>
+		</main>
+
+		<footer class="pie-pagina"><div class="datos-contacto"><a href="tel:+573214567890">Tel: +57 (321) 456 7890</a><span>Dirección: Bogotá D.C Clle 1, Cra. 8tva # 2 - 3</span><a href="mailto:gestiotu@gmail.com">Correo: gestiotu@gmail.com</a></div><a class="service-footer-link" href="../index.html">Volver al inicio <span aria-hidden="true">↑</span></a></footer>
+	</div>
+	<!-- Supabase JS (solo clave anon/publishable) -->
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	<script src="../JS/supabase-client.js"></script>
+	<script src="../JS/supabase-data.js"></script>
+  <script src="../JS/supabase-sync.js"></script>
+	<script src="../JS/gestiotu.js"></script>
+</body>
+</html>

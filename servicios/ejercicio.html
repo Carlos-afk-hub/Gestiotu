@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio | GESTIOTU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;430;450;480;500&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/Styles.css">
+</head>
+<body class="exercise-page">
+  <div class="pagina">
+    <header class="encabezado">
+      <a class="logo" href="../index.html"><h1>GESTIOTU</h1><p>Ejercicio</p></a>
+      <nav class="menu" aria-label="Navegación principal">
+        <a href="../index.html"><span>INICIO</span></a>
+        <a href="../contacto.html"><span>CONTACTO</span></a>
+        <a href="../configuracion.html"><span>CONFIG</span></a>
+        <a href="../sobre-nosotros.html"><span>NOSOTROS</span></a>
+      </nav>
+    </header>
+
+    <main class="service-page">
+      <nav class="service-breadcrumbs" aria-label="Ruta"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Ejercicio</span></nav>
+      <section class="service-hero">
+        <div class="service-intro">
+          <p class="service-eyebrow">EJERCICIO · MOVIMIENTO</p>
+          <h2 class="service-heading">Encuentra un ritmo que puedas sostener.</h2>
+          <p class="service-lede">Arma una rutina inicial, marca tus días activos y usa la estimación como referencia, no como objetivo obligatorio.</p>
+          <a class="btn-pill btn-ghost service-back" href="../index.html#seccion-ejercicio">Volver a categorías</a>
+        </div>
+
+        <section class="service-widget exercise-routine" aria-labelledby="exercise-routine-title">
+          <div class="service-widget-topline"><p id="exercise-routine-title">RUTINA INICIAL</p><span>05 / 05</span></div>
+          <label class="service-field" for="exercise-goal">Enfoque de hoy<select class="service-select" id="exercise-goal" data-exercise-goal><option value="general">Movimiento general</option><option value="fuerza">Fuerza inicial</option><option value="movilidad">Movilidad</option></select></label>
+          <button class="btn-pill btn-filled" type="button" data-exercise-generate>Proponer rutina corta</button>
+          <ol class="exercise-routine-list" data-exercise-routine-list aria-live="polite">
+            <li>Calentamiento suave · 3 minutos</li>
+            <li>Caminata a ritmo cómodo · 10 minutos</li>
+            <li>Vuelta a la calma · 3 minutos</li>
+          </ol>
+          <p class="service-status" data-exercise-routine-status role="status" aria-live="polite">Empieza con movimientos cómodos y descansa cuando lo necesites.</p>
+        </section>
+      </section>
+
+      <section class="exercise-schedule" data-exercise-schedule aria-labelledby="exercise-schedule-title">
+        <div class="schedule-section-heading">
+          <div>
+            <p class="service-eyebrow">PLAN SEMANAL · LUNES A SÁBADO</p>
+            <h2 class="tool-section-title" id="exercise-schedule-title">Organiza tu horario de ejercicio.</h2>
+            <p class="schedule-intro">Elige una franja horaria para cada día, revisa la sugerencia y ajústala a tu preferencia. Tus cambios se guardan en tu cuenta (o en este dispositivo si no inicias sesión).</p>
+          </div>
+          <button class="btn-pill btn-filled schedule-download" type="button" data-schedule-print>Descargar horario en PDF</button>
+        </div>
+        <div class="service-widget schedule-widget">
+          <h3 class="schedule-print-title">Mi horario semanal de ejercicio</h3>
+          <div class="exercise-schedule-grid">
+            <article class="schedule-day-card" data-schedule-day="lunes">
+              <h3>Lunes</h3>
+              <label class="service-field" for="schedule-time-lunes">Horario<select class="service-select" id="schedule-time-lunes" data-schedule-time><option value="dia">Día · 4:00 a. m.–11:00 a. m.</option><option value="tarde">Tarde · 2:00 p. m.–5:00 p. m.</option><option value="noche">Noche · 6:00 p. m.–10:00 p. m.</option></select></label>
+              <label class="service-field" for="schedule-focus-lunes">Enfoque<select class="service-select" id="schedule-focus-lunes" data-schedule-focus><option value="pecho">Pecho y tríceps</option><option value="espalda">Espalda y bíceps</option><option value="piernas">Piernas y glúteos</option><option value="hombros">Hombros</option><option value="core">Abdomen y core</option><option value="completo">Cuerpo completo</option><option value="movilidad">Movilidad y recuperación</option><option value="cardio">Cardio suave</option></select></label>
+              <p class="schedule-suggestion" data-schedule-suggestion></p>
+              <label class="service-field" for="schedule-exercises-lunes">Mis ejercicios (opcional)<input class="service-number" id="schedule-exercises-lunes" data-schedule-exercises type="text" maxlength="160" placeholder="Escribe tus ejercicios"></label>
+              <p class="schedule-custom-copy" data-schedule-custom-copy hidden></p>
+            </article>
+            <article class="schedule-day-card" data-schedule-day="martes">
+              <h3>Martes</h3>
+              <label class="service-field" for="schedule-time-martes">Horario<select class="service-select" id="schedule-time-martes" data-schedule-time><option value="dia">Día · 4:00 a. m.–11:00 a. m.</option><option value="tarde">Tarde · 2:00 p. m.–5:00 p. m.</option><option value="noche">Noche · 6:00 p. m.–10:00 p. m.</option></select></label>
+              <label class="service-field" for="schedule-focus-martes">Enfoque<select class="service-select" id="schedule-focus-martes" data-schedule-focus><option value="pecho">Pecho y tríceps</option><option value="espalda" selected>Espalda y bíceps</option><option value="piernas">Piernas y glúteos</option><option value="hombros">Hombros</option><option value="core">Abdomen y core</option><option value="completo">Cuerpo completo</option><option value="movilidad">Movilidad y recuperación</option><option value="cardio">Cardio suave</option></select></label>
+              <p class="schedule-suggestion" data-schedule-suggestion></p>
+              <label class="service-field" for="schedule-exercises-martes">Mis ejercicios (opcional)<input class="service-number" id="schedule-exercises-martes" data-schedule-exercises type="text" maxlength="160" placeholder="Escribe tus ejercicios"></label>
+              <p class="schedule-custom-copy" data-schedule-custom-copy hidden></p>
+            </article>
+            <article class="schedule-day-card" data-schedule-day="miercoles">
+              <h3>Miércoles</h3>
+              <label class="service-field" for="schedule-time-miercoles">Horario<select class="service-select" id="schedule-time-miercoles" data-schedule-time><option value="dia">Día · 4:00 a. m.–11:00 a. m.</option><option value="tarde">Tarde · 2:00 p. m.–5:00 p. m.</option><option value="noche">Noche · 6:00 p. m.–10:00 p. m.</option></select></label>
+              <label class="service-field" for="schedule-focus-miercoles">Enfoque<select class="service-select" id="schedule-focus-miercoles" data-schedule-focus><option value="pecho">Pecho y tríceps</option><option value="espalda">Espalda y bíceps</option><option value="piernas" selected>Piernas y glúteos</option><option value="hombros">Hombros</option><option value="core">Abdomen y core</option><option value="completo">Cuerpo completo</option><option value="movilidad">Movilidad y recuperación</option><option value="cardio">Cardio suave</option></select></label>
+              <p class="schedule-suggestion" data-schedule-suggestion></p>
+              <label class="service-field" for="schedule-exercises-miercoles">Mis ejercicios (opcional)<input class="service-number" id="schedule-exercises-miercoles" data-schedule-exercises type="text" maxlength="160" placeholder="Escribe tus ejercicios"></label>
+              <p class="schedule-custom-copy" data-schedule-custom-copy hidden></p>
+            </article>
+            <article class="schedule-day-card" data-schedule-day="jueves">
+              <h3>Jueves</h3>
+              <label class="service-field" for="schedule-time-jueves">Horario<select class="service-select" id="schedule-time-jueves" data-schedule-time><option value="dia">Día · 4:00 a. m.–11:00 a. m.</option><option value="tarde">Tarde · 2:00 p. m.–5:00 p. m.</option><option value="noche">Noche · 6:00 p. m.–10:00 p. m.</option></select></label>
+              <label class="service-field" for="schedule-focus-jueves">Enfoque<select class="service-select" id="schedule-focus-jueves" data-schedule-focus><option value="pecho">Pecho y tríceps</option><option value="espalda">Espalda y bíceps</option><option value="piernas">Piernas y glúteos</option><option value="hombros" selected>Hombros</option><option value="core">Abdomen y core</option><option value="completo">Cuerpo completo</option><option value="movilidad">Movilidad y recuperación</option><option value="cardio">Cardio suave</option></select></label>
+              <p class="schedule-suggestion" data-schedule-suggestion></p>
+              <label class="service-field" for="schedule-exercises-jueves">Mis ejercicios (opcional)<input class="service-number" id="schedule-exercises-jueves" data-schedule-exercises type="text" maxlength="160" placeholder="Escribe tus ejercicios"></label>
+              <p class="schedule-custom-copy" data-schedule-custom-copy hidden></p>
+            </article>
+            <article class="schedule-day-card" data-schedule-day="viernes">
+              <h3>Viernes</h3>
+              <label class="service-field" for="schedule-time-viernes">Horario<select class="service-select" id="schedule-time-viernes" data-schedule-time><option value="dia">Día · 4:00 a. m.–11:00 a. m.</option><option value="tarde">Tarde · 2:00 p. m.–5:00 p. m.</option><option value="noche">Noche · 6:00 p. m.–10:00 p. m.</option></select></label>
+              <label class="service-field" for="schedule-focus-viernes">Enfoque<select class="service-select" id="schedule-focus-viernes" data-schedule-focus><option value="pecho">Pecho y tríceps</option><option value="espalda">Espalda y bíceps</option><option value="piernas">Piernas y glúteos</option><option value="hombros">Hombros</option><option value="core">Abdomen y core</option><option value="completo" selected>Cuerpo completo</option><option value="movilidad">Movilidad y recuperación</option><option value="cardio">Cardio suave</option></select></label>
+              <p class="schedule-suggestion" data-schedule-suggestion></p>
+              <label class="service-field" for="schedule-exercises-viernes">Mis ejercicios (opcional)<input class="service-number" id="schedule-exercises-viernes" data-schedule-exercises type="text" maxlength="160" placeholder="Escribe tus ejercicios"></label>
+              <p class="schedule-custom-copy" data-schedule-custom-copy hidden></p>
+            </article>
+            <article class="schedule-day-card" data-schedule-day="sabado">
+              <h3>Sábado</h3>
+              <label class="service-field" for="schedule-time-sabado">Horario<select class="service-select" id="schedule-time-sabado" data-schedule-time><option value="dia">Día · 4:00 a. m.–11:00 a. m.</option><option value="tarde">Tarde · 2:00 p. m.–5:00 p. m.</option><option value="noche">Noche · 6:00 p. m.–10:00 p. m.</option></select></label>
+              <label class="service-field" for="schedule-focus-sabado">Enfoque<select class="service-select" id="schedule-focus-sabado" data-schedule-focus><option value="pecho">Pecho y tríceps</option><option value="espalda">Espalda y bíceps</option><option value="piernas">Piernas y glúteos</option><option value="hombros">Hombros</option><option value="core">Abdomen y core</option><option value="completo">Cuerpo completo</option><option value="movilidad" selected>Movilidad y recuperación</option><option value="cardio">Cardio suave</option></select></label>
+              <p class="schedule-suggestion" data-schedule-suggestion></p>
+              <label class="service-field" for="schedule-exercises-sabado">Mis ejercicios (opcional)<input class="service-number" id="schedule-exercises-sabado" data-schedule-exercises type="text" maxlength="160" placeholder="Escribe tus ejercicios"></label>
+              <p class="schedule-custom-copy" data-schedule-custom-copy hidden></p>
+            </article>
+          </div>
+          <div class="schedule-actions">
+            <p class="service-status" data-schedule-status role="status" aria-live="polite">Elige tus horarios y ejercicios para personalizar el plan.</p>
+          </div>
+          <p class="service-disclaimer schedule-help">Las sugerencias son generales. Adapta la intensidad a tu condición, intercala descanso cuando lo necesites y detente si sientes dolor o malestar.</p>
+        </div>
+      </section>
+
+      <section class="exercise-tools-grid" aria-label="Seguimiento y estimación">
+        <section class="service-widget exercise-streak" data-exercise-streak aria-labelledby="exercise-streak-title">
+          <div class="service-widget-topline"><p id="exercise-streak-title">RACHA DE ESTA SEMANA</p><span>HÁBITO PERSONAL</span></div>
+          <p class="habit-prompt">Marca los días en que hiciste actividad física.</p>
+          <div class="habit-days" role="group" aria-label="Días con actividad física">
+            <label><input type="checkbox" data-exercise-day="0"><span>Lun</span></label>
+            <label><input type="checkbox" data-exercise-day="1"><span>Mar</span></label>
+            <label><input type="checkbox" data-exercise-day="2"><span>Mié</span></label>
+            <label><input type="checkbox" data-exercise-day="3"><span>Jue</span></label>
+            <label><input type="checkbox" data-exercise-day="4"><span>Vie</span></label>
+            <label><input type="checkbox" data-exercise-day="5"><span>Sáb</span></label>
+            <label><input type="checkbox" data-exercise-day="6"><span>Dom</span></label>
+          </div>
+          <div class="habit-progress-copy"><strong data-exercise-count>0 de 7 días</strong><span data-exercise-message>Un día a la vez.</span></div>
+          <progress class="habit-progress" data-exercise-progress max="7" value="0" aria-label="Días activos esta semana"></progress>
+          <button class="btn-pill btn-ghost" type="button" data-exercise-clear>Limpiar semana</button>
+        </section>
+
+        <section class="service-widget calorie-widget" aria-labelledby="calorie-title">
+          <div class="service-widget-topline"><p id="calorie-title">ESTIMACIÓN DE ACTIVIDAD</p><span>REFERENCIA</span></div>
+          <p class="service-widget-note">Completa peso y duración para obtener un cálculo aproximado.</p>
+          <div class="calorie-fields">
+            <label class="service-field" for="exercise-weight">Peso (kg)<input class="service-number" id="exercise-weight" data-exercise-weight type="number" min="20" max="300" value="70" inputmode="decimal"></label>
+            <label class="service-field" for="exercise-minutes">Duración (min)<input class="service-number" id="exercise-minutes" data-exercise-minutes type="number" min="1" max="300" value="30" inputmode="numeric"></label>
+          </div>
+          <label class="service-field" for="exercise-intensity">Actividad<select class="service-select" id="exercise-intensity" data-exercise-intensity><option value="3">Caminata suave</option><option value="5">Caminata rápida o baile</option><option value="6">Bicicleta recreativa</option></select></label>
+          <div class="budget-result"><span>Gasto estimado</span><output data-exercise-calories aria-live="polite">105 kcal</output></div>
+          <p class="service-disclaimer">Estimación general basada en valores MET; puede variar ampliamente y no mide tu salud ni reemplaza orientación profesional.</p>
+        </section>
+      </section>
+
+      <section class="official-resources exercise-resources" aria-labelledby="exercise-resources-title">
+        <p class="service-eyebrow">PARA SEGUIR EXPLORANDO</p>
+        <h2 id="exercise-resources-title">Información y música para acompañar tu rutina.</h2>
+        <div class="resource-links exercise-links">
+          <a href="https://www.who.int/es/news-room/fact-sheets/detail/physical-activity" target="_blank" rel="noopener noreferrer"><strong>Actividad física · OMS</strong><span>Recomendaciones generales de actividad física.</span></a>
+          <a href="https://www.youtube.com/results?search_query=calentamiento+ejercicio+principiantes+sin+equipo" target="_blank" rel="noopener noreferrer"><strong>Buscar calentamientos</strong><span>Resultados de video; revisa la experiencia del creador y adapta la intensidad.</span></a>
+          <a href="https://open.spotify.com/search/m%C3%BAsica%20para%20entrenar%20salsa" target="_blank" rel="noopener noreferrer"><strong>Música para entrenar</strong><span>Busca listas de ritmos latinos en Spotify.</span></a>
+        </div>
+        <p class="service-disclaimer">Los enlaces externos abren servicios de terceros. GESTIOTU no certifica ni respalda a creadores o listas específicas.</p>
+      </section>
+
+      <section class="service-guidance" aria-labelledby="exercise-guide-title">
+        <p class="service-eyebrow">CON CALMA Y CONSTANCIA</p>
+        <h2 id="exercise-guide-title">El mejor inicio es el que puedes repetir.</h2>
+        <div class="service-steps">
+          <article><span>01</span><h3>Prepara</h3><p>Usa ropa cómoda y elige un espacio seguro para moverte.</p></article>
+          <article><span>02</span><h3>Adapta</h3><p>Reduce el tiempo o la intensidad si lo necesitas; pausar también cuenta.</p></article>
+          <article><span>03</span><h3>Consulta</h3><p>Si tienes una condición de salud o dudas, busca orientación profesional antes de cambiar tu actividad.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie-pagina"><div class="datos-contacto"><a href="tel:+573214567890">Tel: +57 (321) 456 7890</a><span>Dirección: Bogotá D.C Clle 1, Cra. 8tva # 2 - 3</span><a href="mailto:gestiotu@gmail.com">Correo: gestiotu@gmail.com</a></div><a class="service-footer-link" href="../index.html">Volver al inicio <span aria-hidden="true">↑</span></a></footer>
+  </div>
+  <!-- Supabase JS (solo clave anon/publishable) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../JS/supabase-client.js"></script>
+  <script src="../JS/supabase-data.js"></script>
+  <script src="../JS/supabase-sync.js"></script>
+  <script src="../JS/gestiotu.js"></script>
+</body>
+</html>

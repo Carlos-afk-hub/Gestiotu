@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GESTIOTU - Configuración</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;430;450;480;500&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="CSS/Styles.css">
+</head>
+
+<body class="pagina-configuracion">
+
+    <!-- ==================================================
+         CONTENEDOR PRINCIPAL
+    =================================================== -->
+
+    <div class="pagina">
+
+
+        <!-- ==================================================
+             ENCABEZADO
+        =================================================== -->
+
+        <header class="encabezado">
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                <h1>GESTIOTU</h1>
+
+                <p>
+                    Configuraciones
+                </p>
+
+            </div>
+
+
+            <!-- MENU DE NAVEGACION -->
+
+            <nav class="menu">
+
+                <!-- INICIO -->
+
+                <a href="index.html">
+
+                    <div class="icono">
+                        <img src="IMG/png/Inicio.png" alt="Inicio">
+                    </div>
+
+                    <span>INICIO</span>
+
+                </a>
+
+
+                <!-- CONTACTO -->
+
+                <a href="contacto.html">
+
+                    <div class="icono">
+                        <img src="IMG/png/Contacto.png" alt="Contacto">
+                    </div>
+
+                    <span>CONTACTO</span>
+
+                </a>
+
+
+                <!-- CONFIGURACION -->
+
+                <a href="configuracion.html">
+
+                    <div class="icono">
+                        <img src="IMG/png/Config.png" alt="Configuración">
+                    </div>
+
+                    <span>CONFIG</span>
+
+                </a>
+
+
+                <!-- NOSOTROS -->
+
+                <a href="sobre-nosotros.html">
+
+                    <div class="icono">
+                        <img src="IMG/png/Nosotros.png" alt="Nosotros">
+                    </div>
+
+                    <span>NOSOTROS</span>
+
+                </a>
+
+            </nav>
+
+        </header>
+
+
+        <!-- ==================================================
+             CONTENIDO DE CONFIGURACION
+        =================================================== -->
+
+        <main class="configuracion">
+            <aside class="config-menu" aria-label="Secciones de configuración">
+                <button type="button" class="config-opcion activo" data-config-target="cuenta" aria-controls="panel-cuenta" aria-pressed="true"><span class="punto"></span>Cuenta</button>
+                <button type="button" class="config-opcion" data-config-target="contacto" aria-controls="panel-contacto" aria-pressed="false"><span class="punto"></span>Contacto</button>
+                <button type="button" class="config-opcion" data-config-target="apariencia" aria-controls="panel-apariencia" aria-pressed="false"><span class="punto"></span>Apariencia</button>
+                <button type="button" class="config-opcion" data-config-target="contenido" aria-controls="panel-contenido" aria-pressed="false"><span class="punto"></span>Contenido</button>
+                <button type="button" class="config-opcion" data-config-target="inicio" aria-controls="panel-inicio" aria-pressed="false"><span class="punto"></span>Inicio</button>
+                <button type="button" class="config-opcion" data-config-target="servicios" aria-controls="panel-servicios" aria-pressed="false"><span class="punto"></span>Servicios</button>
+                <button type="button" class="config-opcion" data-config-target="privacidad" aria-controls="panel-privacidad" aria-pressed="false"><span class="punto"></span>Privacidad</button>
+                <button type="button" class="config-opcion" data-config-target="accesibilidad" aria-controls="panel-accesibilidad" aria-pressed="false"><span class="punto"></span>Accesibilidad</button>
+            </aside>
+
+            <form class="config-panel" id="preferencias-form">
+                <h2>Configuración</h2>
+                <p class="config-descripcion">Guarda tus cambios para aplicarlos en todas las páginas. Las otras pestañas se sincronizan automáticamente.</p>
+
+                <section class="config-seccion" id="panel-cuenta" data-config-section="cuenta">
+                    <h3>Cuenta</h3>
+                    <div class="config-fila">
+                        <div><label for="setting-name"><strong>Nombre</strong></label><p>Se incluirá en los mensajes que prepares desde Contacto.</p></div>
+                        <input id="setting-name" type="text" value="Usuario" autocomplete="name" class="config-input" data-setting="displayName">
+                    </div>
+                    <div class="config-fila">
+                        <div><label for="setting-email"><strong>Correo electrónico</strong></label><p>Dirección de respuesta para tus mensajes.</p></div>
+                        <input id="setting-email" type="email" value="gestiotu@gmail.com" autocomplete="email" class="config-input" data-setting="accountEmail">
+                    </div>
+                </section>
+
+                <section class="config-seccion" id="panel-contacto" data-config-section="contacto" hidden>
+                    <h3>Contacto</h3>
+                    <div class="config-fila">
+                        <div><strong>Permitir preparar mensajes</strong><p>Activa el formulario para redactar un mensaje en tu aplicación de correo.</p></div>
+                        <label class="interruptor"><input type="checkbox" data-setting="allowContactForm" checked aria-label="Permitir preparar mensajes"><span class="slider"></span></label>
+                    </div>
+                    <div class="config-fila">
+                        <div><strong>Mostrar acceso a WhatsApp</strong><p>Muestra el acceso directo en la página de contacto.</p></div>
+                        <label class="interruptor"><input type="checkbox" data-setting="showWhatsApp" checked aria-label="Mostrar acceso a WhatsApp"><span class="slider"></span></label>
+                    </div>
+                </section>
+
+                <section class="config-seccion" id="panel-apariencia" data-config-section="apariencia" hidden>
+                    <h3>Apariencia</h3>
+                    <div class="config-fila">
+                        <div><label for="setting-theme"><strong>Tema</strong></label><p>Elige un tema claro, oscuro o según tu dispositivo.</p></div>
+                        <select id="setting-theme" class="config-select" data-setting="theme"><option value="claro">Claro</option><option value="oscuro">Oscuro</option><option value="automatico">Automático</option></select>
+                    </div>
+                </section>
+
+                <section class="config-seccion" id="panel-contenido" data-config-section="contenido" hidden>
+                    <h3>Contenido</h3>
+                    <div class="config-fila">
+                        <div><strong>Mostrar descripciones</strong><p>Enseña el texto complementario de las categorías y la bienvenida.</p></div>
+                        <label class="interruptor"><input type="checkbox" data-setting="showDetails" checked aria-label="Mostrar descripciones"><span class="slider"></span></label>
+                    </div>
+                    <div class="config-fila">
+                        <div><strong>Mostrar datos en el pie de página</strong><p>Controla la información de contacto que aparece al final de las páginas.</p></div>
+                        <label class="interruptor"><input type="checkbox" data-setting="showFooterDetails" checked aria-label="Mostrar datos en el pie de página"><span class="slider"></span></label>
+                    </div>
+                </section>
+
+                <section class="config-seccion" id="panel-inicio" data-config-section="inicio" hidden>
+                    <h3>Inicio</h3>
+                    <p class="config-descripcion">Elige las categorías que quieres ver en la página principal.</p>
+                    <div class="config-fila"><strong>Tiempo</strong><label class="interruptor"><input type="checkbox" data-category-setting="tiempo" checked aria-label="Mostrar categoría Tiempo"><span class="slider"></span></label></div>
+                    <div class="config-fila"><strong>Economía</strong><label class="interruptor"><input type="checkbox" data-category-setting="economia" checked aria-label="Mostrar categoría Economía"><span class="slider"></span></label></div>
+                    <div class="config-fila"><strong>Alimentación</strong><label class="interruptor"><input type="checkbox" data-category-setting="alimentacion" checked aria-label="Mostrar categoría Alimentación"><span class="slider"></span></label></div>
+                    <div class="config-fila"><strong>Ejercicio</strong><label class="interruptor"><input type="checkbox" data-category-setting="ejercicio" checked aria-label="Mostrar categoría Ejercicio"><span class="slider"></span></label></div>
+                    <div class="config-fila"><strong>Salud</strong><label class="interruptor"><input type="checkbox" data-category-setting="salud" checked aria-label="Mostrar categoría Salud"><span class="slider"></span></label></div>
+                </section>
+
+                <section class="config-seccion" id="panel-servicios" data-config-section="servicios" hidden>
+                    <h3>Servicios</h3>
+                    <div class="config-fila">
+                        <div><label for="setting-timer-duration"><strong>Duración inicial de enfoque</strong></label><p>Se usa al abrir el temporizador de Tiempo.</p></div>
+                        <select id="setting-timer-duration" class="config-select" data-setting="defaultTimerDuration"><option value="25">25 minutos</option><option value="45">45 minutos</option><option value="60">60 minutos</option></select>
+                    </div>
+                    <div class="config-fila">
+                        <div><label for="setting-budget-currency"><strong>Moneda del presupuesto</strong></label><p>Selecciona la moneda que muestra la calculadora de Economía.</p></div>
+                        <select id="setting-budget-currency" class="config-select" data-setting="budgetCurrency"><option value="COP">COP · Peso colombiano</option><option value="USD">USD · Dólar estadounidense</option></select>
+                    </div>
+                    <div class="config-fila">
+                        <div><label for="setting-meal-preference"><strong>Preferencia de alimentación</strong></label><p>Define la selección inicial en el plan de comidas.</p></div>
+                        <select id="setting-meal-preference" class="config-select" data-setting="mealPreference"><option value="equilibrada">Equilibrada</option><option value="vegetariana">Vegetariana</option><option value="rapida">Rápida</option></select>
+                    </div>
+                    <div class="config-fila">
+                        <div><label for="setting-exercise-goal"><strong>Enfoque de ejercicio</strong></label><p>Orienta la propuesta inicial de rutina.</p></div>
+                        <select id="setting-exercise-goal" class="config-select" data-setting="exerciseGoal"><option value="general">Movimiento general</option><option value="fuerza">Fuerza inicial</option><option value="movilidad">Movilidad</option></select>
+                    </div>
+                </section>
+
+                <section class="config-seccion" id="panel-privacidad" data-config-section="privacidad" hidden>
+                    <h3>Privacidad</h3>
+                    <div class="config-fila">
+                        <div><strong>Recordar mis preferencias</strong><p>Guarda los ajustes en tu cuenta (o en este navegador si no has iniciado sesión). Si lo desactivas, se borrarán al guardar.</p></div>
+                        <label class="interruptor"><input type="checkbox" data-setting="rememberSettings" checked aria-label="Recordar mis preferencias"><span class="slider"></span></label>
+                    </div>
+                    <div class="config-fila">
+                        <div><strong>Restablecer preferencias</strong><p>Elimina los ajustes guardados y vuelve a los valores iniciales.</p></div>
+                        <button type="button" class="btn-restaurar" id="restaurar-preferencias">Restablecer</button>
+                    </div>
+                </section>
+
+                <section class="config-seccion" id="panel-accesibilidad" data-config-section="accesibilidad" hidden>
+                    <h3>Accesibilidad</h3>
+                    <div class="config-fila">
+                        <div><label for="setting-text-size"><strong>Tamaño del texto</strong></label><p>Aumenta el tamaño base de los textos.</p></div>
+                        <select id="setting-text-size" class="config-select" data-setting="textSize"><option value="normal">Normal</option><option value="grande">Grande</option></select>
+                    </div>
+                    <div class="config-fila">
+                        <div><strong>Reducir movimiento</strong><p>Desactiva desplazamientos y transiciones animadas.</p></div>
+                        <label class="interruptor"><input type="checkbox" data-setting="reduceMotion" aria-label="Reducir movimiento"><span class="slider"></span></label>
+                    </div>
+                    <div class="config-fila">
+                        <div><strong>Alto contraste</strong><p>Refuerza los bordes y el foco del teclado.</p></div>
+                        <label class="interruptor"><input type="checkbox" data-setting="highContrast" aria-label="Alto contraste"><span class="slider"></span></label>
+                    </div>
+                </section>
+
+                <p class="config-estado" id="config-estado" role="status" aria-live="polite"></p>
+                <div class="config-acciones">
+                    <button type="submit" class="btn-pill btn-filled btn-guardar">Guardar cambios</button>
+                    <button type="button" class="btn-pill btn-ghost btn-cancelar" id="descartar-preferencias">Descartar cambios</button>
+                </div>
+            </form>
+        </main>
+
+
+        <!-- ==================================================
+             PIE DE PAGINA
+        =================================================== -->
+
+        <footer class="pie-pagina">
+
+            <div class="datos-contacto">
+
+                <a href="tel:+573214567890">Tel: +57 (321) 456 7890</a>
+
+                <span>
+                    Dirección: Bogota D.C Clle 1, Cra. 8tva # 2 - 3
+                </span>
+
+                <a href="mailto:gestiotu@gmail.com">Correo: gestiotu@gmail.com</a>
+
+            </div>
+
+
+            <div class="redes">
+
+                <a href="https://wa.me/573214567890" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp">
+                    <i class="fab fa-whatsapp">
+                        <img src="IMG/png/whatsapp.png" alt="Whatsapp">
+                    </i>
+                </a>
+
+                <span class="red-inactivo" title="Perfil de Facebook no configurado" aria-label="Facebook, perfil no configurado">
+                    <i class="fab fa-facebook-f">
+                        <img src="IMG/png/facebook.png" alt="Facebook">
+                    </i>
+                </span>
+
+                <span class="red-inactivo" title="Perfil de Instagram no configurado" aria-label="Instagram, perfil no configurado">
+                    <i class="fab fa-instagram">
+                        <img src="IMG/png/instagram.png" alt="Instagram">
+                    </i>
+                </span>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- Supabase JS (solo clave anon/publishable) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="JS/supabase-client.js"></script>
+    <script src="JS/supabase-data.js"></script>
+  <script src="JS/supabase-sync.js"></script>
+    <script src="JS/gestiotu.js"></script>
+</body>
+
+</html>

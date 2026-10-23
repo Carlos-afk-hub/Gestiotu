@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Bienestar | GESTIOTU</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;430;450;480;500&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../CSS/Styles.css">
+</head>
+<body>
+	<div class="pagina">
+		<header class="encabezado">
+			<a class="logo" href="../index.html"><h1>GESTIOTU</h1><p>Bienestar</p></a>
+			<nav class="menu" aria-label="Navegación principal"><a href="../index.html"><span>INICIO</span></a><a href="../contacto.html"><span>CONTACTO</span></a><a href="../configuracion.html"><span>CONFIG</span></a><a href="../sobre-nosotros.html"><span>NOSOTROS</span></a></nav>
+		</header>
+
+		<main class="service-page">
+			<nav class="service-breadcrumbs" aria-label="Ruta"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Bienestar</span></nav>
+			<section class="service-hero">
+				<div class="service-intro">
+					<p class="service-eyebrow">SALUD · HÁBITOS</p>
+					<h2 class="service-heading">Pequeños cuidados, a tu manera.</h2>
+					<p class="service-lede">Lleva una cuenta amable de los momentos que dedicas a tu bienestar. No se trata de completar todo: elige un paso posible.</p>
+					<a class="btn-pill btn-ghost service-back" href="../index.html#seccion-salud">Volver a categorías</a>
+				</div>
+
+				<section class="service-widget habit-widget" data-habit-widget aria-labelledby="habit-title">
+					<div class="service-widget-topline"><p id="habit-title">MI SEMANA</p><span>04 / 05</span></div>
+					<p class="habit-prompt">¿Tuviste un momento para ti hoy?</p>
+					<div class="habit-days" role="group" aria-label="Días con un momento de bienestar">
+						<label><input type="checkbox" data-habit-day="0"><span>Lun</span></label>
+						<label><input type="checkbox" data-habit-day="1"><span>Mar</span></label>
+						<label><input type="checkbox" data-habit-day="2"><span>Mié</span></label>
+						<label><input type="checkbox" data-habit-day="3"><span>Jue</span></label>
+						<label><input type="checkbox" data-habit-day="4"><span>Vie</span></label>
+						<label><input type="checkbox" data-habit-day="5"><span>Sáb</span></label>
+						<label><input type="checkbox" data-habit-day="6"><span>Dom</span></label>
+					</div>
+					<div class="habit-progress-copy"><strong data-habit-count>0 de 7 días</strong><span data-habit-message>Todo empieza con un momento.</span></div>
+					<progress class="habit-progress" data-habit-progress max="7" value="0" aria-label="Días marcados esta semana"></progress>
+					<button class="btn-pill btn-ghost" type="button" data-habit-reset>Limpiar semana</button>
+					<p class="service-disclaimer">Este registro es orientativo y no sustituye una valoración ni indicaciones profesionales.</p>
+				</section>
+			</section>
+
+			<section class="official-resources health-resources" aria-labelledby="health-news-title">
+				<p class="service-eyebrow">INFORMACIÓN VERIFICABLE</p>
+				<h2 id="health-news-title">Noticias y datos de fuentes de salud.</h2>
+				<div class="resource-links">
+					<a href="https://www.who.int/es/news-room" target="_blank" rel="noopener noreferrer"><strong>Noticias de la OMS</strong><span>Actualidad sanitaria internacional.</span></a>
+					<a href="https://www.who.int/es/health-topics" target="_blank" rel="noopener noreferrer"><strong>Temas de salud de la OMS</strong><span>Fichas informativas y recursos por tema.</span></a>
+					<a href="https://www.minsalud.gov.co/" target="_blank" rel="noopener noreferrer"><strong>Ministerio de Salud de Colombia</strong><span>Información y servicios nacionales.</span></a>
+				</div>
+			</section>
+
+			<section class="health-tools-grid" aria-label="Consulta y centros de salud">
+				<section class="service-widget health-topic-widget" aria-labelledby="health-topic-title">
+					<div>
+						<p class="service-eyebrow">BUSCADOR DE TEMAS</p>
+						<h2 id="health-topic-title" class="tool-section-title">Consulta información de salud.</h2>
+						<p class="service-widget-note">Algunos temas tienen una explicación breve. Si no está disponible, te ofrecemos búsquedas web y en fuentes sanitarias oficiales; no analiza síntomas ni identifica enfermedades.</p>
+					</div>
+					<form class="health-topic-form" data-health-topic-search>
+						<label class="service-field" for="health-topic-query">Tema<input class="service-number" id="health-topic-query" name="topic" maxlength="80" placeholder="Ejemplo: diabetes, depresión o alimentación" required></label>
+						<button class="btn-pill btn-filled" type="submit">Buscar tema</button>
+					</form>
+					<div class="health-topic-results" data-health-topic-results aria-live="polite"></div>
+					<p class="service-disclaimer">Si tienes síntomas o una preocupación médica, busca atención de un profesional; una página web no puede diagnosticarte.</p>
+				</section>
+
+				<section class="service-widget health-appointment-widget" aria-labelledby="appointment-title">
+					<div>
+						<p class="service-eyebrow">PLANIFICADOR DE CONSULTAS</p>
+						<h2 id="appointment-title" class="tool-section-title">Anota una consulta pendiente.</h2>
+						<p class="service-widget-note">La cita solo se anota en tu calendario; no se reserva con una clínica.</p>
+					</div>
+					<form class="health-appointment-form" data-health-appointment>
+						<label class="service-field" for="appointment-type">Tipo de consulta<select class="service-select" id="appointment-type" name="type"><option>Consulta general</option><option>Odontología</option><option>Salud mental</option><option>Otra especialidad</option></select></label>
+						<label class="service-field" for="appointment-date">Fecha y hora<input class="service-number" id="appointment-date" name="date" type="datetime-local" required></label>
+						<button class="btn-pill btn-filled" type="submit">Descargar cita .ics</button>
+					</form>
+					<p class="service-status" data-appointment-status role="status" aria-live="polite">Importa el archivo descargado en tu calendario para crear el recordatorio.</p>
+				</section>
+
+				<section class="service-widget health-place-widget" aria-labelledby="health-place-title">
+					<div>
+						<p class="service-eyebrow">DIRECTORIO POR UBICACIÓN</p>
+						<h2 id="health-place-title" class="tool-section-title">Busca farmacias y centros de salud.</h2>
+						<p class="service-widget-note">La búsqueda se abre en Google Maps y comparte allí el lugar que escribas.</p>
+					</div>
+					<form class="health-place-form" data-health-place-search>
+						<label class="service-field" for="health-place-kind">Lugar<select class="service-select" id="health-place-kind" name="kind"><option value="farmacias">Farmacias</option><option value="centros de salud">Centros de salud</option><option value="clínicas">Clínicas</option></select></label>
+						<label class="service-field" for="health-place-location">Ciudad o barrio<input class="service-number" id="health-place-location" name="location" placeholder="Ejemplo: Bogotá, Chapinero" required></label>
+						<button class="btn-pill btn-ghost" type="submit">Abrir mapa</button>
+					</form>
+				</section>
+			</section>
+
+			<section class="service-guidance" aria-labelledby="wellbeing-guide-title">
+				<p class="service-eyebrow">CUIDADO COTIDIANO</p>
+				<h2 id="wellbeing-guide-title">Hazlo posible, no perfecto.</h2>
+				<div class="service-steps">
+					<article><span>01</span><h3>Escucha</h3><p>Observa cómo te sientes y qué necesitas en este momento.</p></article>
+					<article><span>02</span><h3>Elige</h3><p>Prueba una pausa, un paseo corto o una conversación con alguien de confianza.</p></article>
+					<article><span>03</span><h3>Busca apoyo</h3><p>Si algo te preocupa, consulta a un profesional de salud de confianza.</p></article>
+				</div>
+			</section>
+		</main>
+
+		<footer class="pie-pagina"><div class="datos-contacto"><a href="tel:+573214567890">Tel: +57 (321) 456 7890</a><span>Dirección: Bogotá D.C Clle 1, Cra. 8tva # 2 - 3</span><a href="mailto:gestiotu@gmail.com">Correo: gestiotu@gmail.com</a></div><a class="service-footer-link" href="../index.html">Volver al inicio <span aria-hidden="true">↑</span></a></footer>
+	</div>
+	<!-- Supabase JS (solo clave anon/publishable) -->
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	<script src="../JS/supabase-client.js"></script>
+	<script src="../JS/supabase-data.js"></script>
+  <script src="../JS/supabase-sync.js"></script>
+	<script src="../JS/gestiotu.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Economía | GESTIOTU</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;430;450;480;500&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../CSS/Styles.css">
+</head>
+<body>
+	<div class="pagina">
+		<header class="encabezado">
+			<a class="logo" href="../index.html"><h1>GESTIOTU</h1><p>Economía</p></a>
+			<nav class="menu" aria-label="Navegación principal"><a href="../index.html"><span>INICIO</span></a><a href="../contacto.html"><span>CONTACTO</span></a><a href="../configuracion.html"><span>CONFIG</span></a><a href="../sobre-nosotros.html"><span>NOSOTROS</span></a></nav>
+		</header>
+
+		<main class="service-page">
+			<nav class="service-breadcrumbs" aria-label="Ruta"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Economía</span></nav>
+			<section class="service-hero">
+				<div class="service-intro">
+					<p class="service-eyebrow">ECONOMÍA · PRESUPUESTO</p>
+					<h2 class="service-heading">Que tus números cuenten una historia clara.</h2>
+					<p class="service-lede">Reúne ingresos, gastos y una meta de ahorro en un mismo lugar. Ajusta las cifras para ver cuánto queda disponible.</p>
+					<a class="btn-pill btn-ghost service-back" href="../index.html#seccion-economia">Volver a categorías</a>
+				</div>
+
+				<section class="service-widget budget-widget" data-budget-widget aria-labelledby="budget-title">
+					<div class="service-widget-topline"><p id="budget-title">PRESUPUESTO MENSUAL</p><span>02 / 05</span></div>
+					<p class="service-widget-note">Cifras de ejemplo editables · <span data-budget-currency-label>COP</span></p>
+					<div class="budget-inputs">
+						<label class="service-field" for="budget-income">Ingresos del mes<input class="service-number" id="budget-income" data-budget="income" type="number" min="0" step="10000" value="2800000" inputmode="decimal"></label>
+						<label class="service-field" for="budget-fixed">Gastos fijos<input class="service-number" id="budget-fixed" data-budget="fixed" type="number" min="0" step="10000" value="1200000" inputmode="decimal"></label>
+						<label class="service-field" for="budget-variable">Gastos variables<input class="service-number" id="budget-variable" data-budget="variable" type="number" min="0" step="10000" value="650000" inputmode="decimal"></label>
+						<label class="service-field" for="budget-savings">Meta de ahorro<input class="service-number" id="budget-savings" data-budget="savings" type="number" min="0" step="10000" value="400000" inputmode="decimal"></label>
+					</div>
+					<div class="budget-result">
+						<span>Disponible después de gastos y meta</span>
+						<output data-budget-remaining aria-live="polite">$550.000</output>
+					</div>
+					<div class="budget-result budget-result-secondary">
+						<span>Meta de ahorro sobre el ingreso</span>
+						<output data-budget-rate>14 %</output>
+					</div>
+					<div class="budget-distribution" aria-label="Ejemplo de distribución porcentual">
+						<p>Referencia orientativa 50 / 30 / 20</p>
+						<div><span>Necesidades · 50 %</span><output data-budget-share="needs">$1.400.000</output></div>
+						<div><span>Gastos flexibles · 30 %</span><output data-budget-share="flexible">$840.000</output></div>
+						<div><span>Ahorro o metas · 20 %</span><output data-budget-share="goals">$560.000</output></div>
+					</div>
+					<p class="service-status" data-budget-status role="status" aria-live="polite">Ajusta las cifras para revisar tu presupuesto.</p>
+					<p class="service-disclaimer">La distribución 50/30/20 es solo una referencia editable, no una recomendación personalizada. Esta herramienta no reemplaza asesoría financiera.</p>
+				</section>
+			</section>
+
+			<section class="currency-section" aria-labelledby="currency-title">
+				<p class="service-eyebrow">CONVERSOR DE DIVISAS</p>
+				<h2 class="tool-section-title" id="currency-title">Consulta cuánto vale hoy.</h2>
+				<p class="currency-intro">Convierte entre pesos colombianos y otras monedas con la tasa de referencia más reciente disponible.</p>
+				<div class="service-widget currency-widget" data-currency-widget>
+					<div class="service-widget-topline"><p>CONVERSIÓN EN LÍNEA</p><span>MONEDAS</span></div>
+					<div class="currency-inputs">
+						<label class="service-field" for="currency-amount">Cantidad<input class="service-number" id="currency-amount" data-currency-amount type="number" min="0" step="any" value="1" inputmode="decimal"></label>
+						<label class="service-field" for="currency-from">De<select class="service-select" id="currency-from" data-currency-from><option value="COP">COP · Peso colombiano</option><option value="USD">USD · Dólar estadounidense</option><option value="EUR">EUR · Euro</option><option value="MXN">MXN · Peso mexicano</option><option value="BRL">BRL · Real brasileño</option><option value="GBP">GBP · Libra esterlina</option><option value="CAD">CAD · Dólar canadiense</option><option value="JPY">JPY · Yen japonés</option></select></label>
+						<label class="service-field" for="currency-to">A<select class="service-select" id="currency-to" data-currency-to><option value="USD">USD · Dólar estadounidense</option><option value="COP">COP · Peso colombiano</option><option value="EUR">EUR · Euro</option><option value="MXN">MXN · Peso mexicano</option><option value="BRL">BRL · Real brasileño</option><option value="GBP">GBP · Libra esterlina</option><option value="CAD">CAD · Dólar canadiense</option><option value="JPY">JPY · Yen japonés</option></select></label>
+					</div>
+					<div class="currency-result">
+						<span>Resultado estimado</span>
+						<output data-currency-result aria-live="polite">—</output>
+					</div>
+					<p class="currency-rate" data-currency-rate>Esperando la tasa de cambio.</p>
+					<div class="service-actions">
+						<button class="btn-pill btn-filled" type="button" data-currency-refresh>Actualizar tasa</button>
+					</div>
+					<p class="service-status" data-currency-status role="status" aria-live="polite">Conéctate a internet para consultar la tasa disponible.</p>
+					<p class="service-disclaimer">Tasa de referencia provista por <a href="https://www.exchangerate-api.com/" target="_blank" rel="noopener noreferrer">ExchangeRate-API</a>. Puede tener retraso y no corresponde necesariamente a la tasa de compra o venta de una entidad financiera.</p>
+				</div>
+			</section>
+
+			<section class="official-resources" aria-labelledby="economy-sources-title">
+				<p class="service-eyebrow">ACTUALIDAD Y NOVEDADES</p>
+				<h2 id="economy-sources-title">Noticias económicas desde fuentes oficiales.</h2>
+				<p class="currency-intro">Explora comunicados, indicadores y novedades directamente en los sitios de cada institución.</p>
+				<div class="resource-links">
+					<a href="https://www.banrep.gov.co/es/noticias" target="_blank" rel="noopener noreferrer"><strong>Banco de la República</strong><span>Comunicados, noticias y calendario económico</span></a>
+					<a href="https://www.dane.gov.co/index.php/actualidad-dane" target="_blank" rel="noopener noreferrer"><strong>DANE</strong><span>Novedades e indicadores oficiales de Colombia</span></a>
+					<a href="https://www.minhacienda.gov.co/" target="_blank" rel="noopener noreferrer"><strong>Ministerio de Hacienda</strong><span>Comunicados y decisiones de política económica</span></a>
+					<a href="https://www.bvc.com.co/" target="_blank" rel="noopener noreferrer"><strong>Bolsa de Valores de Colombia</strong><span>Mercado local y noticias de mercado</span></a>
+					<a href="https://www.superfinanciera.gov.co/" target="_blank" rel="noopener noreferrer"><strong>Superintendencia Financiera</strong><span>Información para consumidores y educación financiera</span></a>
+				</div>
+				<p class="service-disclaimer">Los enlaces llevan a publicaciones externas, que pueden cambiar y requieren conexión a internet. GESTIOTU no publica recomendaciones de inversión ni anuncios bancarios.</p>
+			</section>
+
+			<section class="service-guidance" aria-labelledby="money-guide-title">
+				<p class="service-eyebrow">UN PUNTO DE PARTIDA</p>
+				<h2 id="money-guide-title">Orden antes que perfección.</h2>
+				<div class="service-steps">
+					<article><span>01</span><h3>Registra</h3><p>Usa tus movimientos reales del último mes para tener una referencia honesta.</p></article>
+					<article><span>02</span><h3>Separa</h3><p>Distingue los compromisos fijos de los gastos que cambian cada semana.</p></article>
+					<article><span>03</span><h3>Revisa</h3><p>Haz pequeños ajustes al presupuesto cuando cambien tus prioridades.</p></article>
+				</div>
+			</section>
+		</main>
+
+		<footer class="pie-pagina"><div class="datos-contacto"><a href="tel:+573214567890">Tel: +57 (321) 456 7890</a><span>Dirección: Bogotá D.C Clle 1, Cra. 8tva # 2 - 3</span><a href="mailto:gestiotu@gmail.com">Correo: gestiotu@gmail.com</a></div><a class="service-footer-link" href="../index.html">Volver al inicio <span aria-hidden="true">↑</span></a></footer>
+	</div>
+	<!-- Supabase JS (solo clave anon/publishable) -->
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	<script src="../JS/supabase-client.js"></script>
+	<script src="../JS/supabase-data.js"></script>
+  <script src="../JS/supabase-sync.js"></script>
+	<script src="../JS/gestiotu.js"></script>
+</body>
+</html>

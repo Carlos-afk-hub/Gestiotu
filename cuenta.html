@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Registro e inicio de sesión de demostración para GESTIOTU.">
+  <title>Cuenta | GESTIOTU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;430;450;480;500&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/Styles.css">
+</head>
+<body>
+  <div class="pagina">
+    <header class="encabezado">
+      <a class="logo" href="index.html">
+        <h1>GESTIOTU</h1>
+        <p>Cuenta</p>
+      </a>
+      <nav class="menu" aria-label="Navegación principal">
+        <a href="index.html"><span>INICIO</span></a>
+        <a href="contacto.html"><span>CONTACTO</span></a>
+        <a href="configuracion.html"><span>CONFIG</span></a>
+        <a href="sobre-nosotros.html"><span>NOSOTROS</span></a>
+      </nav>
+    </header>
+
+    <main class="account-page" data-account-page>
+      <section class="account-card" aria-labelledby="account-title">
+        <div>
+          <p class="caption muted">GESTIOTU · TU CUENTA</p>
+          <h2 id="account-title">Tu espacio personal</h2>
+          <p>Regístrate o inicia sesión para guardar tus datos en la nube y acceder a ellos desde cualquier dispositivo.</p>
+        </div>
+
+        <div class="account-tabs" role="group" aria-label="Acceso a la cuenta">
+          <button type="button" data-show-login aria-pressed="true">Iniciar sesión</button>
+          <button type="button" data-show-register aria-pressed="false">Crear cuenta</button>
+        </div>
+
+        <form class="account-form" data-login-form>
+          <label for="login-email">Correo electrónico
+            <input id="login-email" name="email" type="email" autocomplete="email" required>
+          </label>
+          <label for="login-password">Contraseña
+            <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+          </label>
+          <button class="btn-pill btn-filled" type="submit">Iniciar sesión</button>
+        </form>
+
+        <form class="account-form" data-register-form hidden>
+          <label for="register-name">Nombre
+            <input id="register-name" name="name" type="text" autocomplete="name" maxlength="80" required>
+          </label>
+          <label for="register-email">Correo electrónico
+            <input id="register-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+          </label>
+          <label for="register-password">Contraseña (mínimo 8 caracteres)
+            <input id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+          </label>
+          <button class="btn-pill btn-filled" type="submit">Crear cuenta</button>
+          <p class="account-local-notice">Tus datos se guardan en la nube y solo tú puedes verlos.</p>
+        </form>
+
+        <p class="account-status" id="account-status" role="status" aria-live="polite"></p>
+        <p class="account-local-notice">La sesión se gestiona con Supabase Auth. Usa una contraseña segura y no la compartas con nadie.</p>
+      </section>
+    </main>
+
+    <footer class="pie-pagina">
+      <div class="datos-contacto">
+        <a href="tel:+573214567890">Tel: +57 (321) 456 7890</a>
+        <a href="mailto:gestiotu@gmail.com">Correo: gestiotu@gmail.com</a>
+      </div>
+    </footer>
+  </div>
+  <!-- Supabase JS (solo clave anon/publishable) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="JS/supabase-client.js"></script>
+  <script src="JS/supabase-data.js"></script>
+  <script src="JS/supabase-sync.js"></script>
+  <script src="JS/gestiotu.js"></script>
+</body>
+</html>

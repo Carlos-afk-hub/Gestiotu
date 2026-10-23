@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GESTIOTU - Contacto</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;430;450;480;500&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
+
+    <!-- CSS GENERAL -->
+    <link rel="stylesheet" href="CSS/Styles.css">
+</head>
+
+<body>
+
+    <!-- ==================================================
+         CONTENEDOR PRINCIPAL
+    =================================================== -->
+
+    <div class="pagina">
+
+
+        <!-- ==================================================
+             ENCABEZADO
+        =================================================== -->
+
+        <header class="encabezado">
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                <h1>GESTIOTU</h1>
+
+                <p>
+                    Contacto
+                </p>
+
+            </div>
+
+
+            <!-- MENU DE NAVEGACION -->
+
+            <nav class="menu">
+
+                <!-- INICIO -->
+
+                <a href="index.html">
+
+                    <div class="icono">
+
+                        <img
+                            src="IMG/png/Inicio.png"
+                            alt="Inicio"
+                        >
+
+                    </div>
+
+                    <span>INICIO</span>
+
+                </a>
+
+
+                <!-- CONTACTO -->
+
+                <a href="contacto.html">
+
+                    <div class="icono">
+
+                        <img
+                            src="IMG/png/Contacto.png"
+                            alt="Contacto"
+                        >
+
+                    </div>
+
+                    <span>CONTACTO</span>
+
+                </a>
+
+
+                <!-- CONFIGURACION -->
+
+                <a href="configuracion.html">
+
+                    <div class="icono">
+
+                        <img
+                            src="IMG/png/Config.png"
+                            alt="Configuración"
+                        >
+
+                    </div>
+
+                    <span>CONFIG</span>
+
+                </a>
+
+
+                <!-- NOSOTROS -->
+
+                <a href="sobre-nosotros.html">
+
+                    <div class="icono">
+
+                        <img
+                            src="IMG/png/Nosotros.png"
+                            alt="Nosotros"
+                        >
+
+                    </div>
+
+                    <span>NOSOTROS</span>
+
+                </a>
+
+            </nav>
+
+        </header>
+
+
+        <!-- ==================================================
+             CONTENIDO DE CONTACTO
+        =================================================== -->
+
+        <main class="contacto">
+
+
+            <!-- FORMULARIO -->
+
+            <section class="contacto-formulario">
+                <h2>Hablemos</h2>
+                <p class="contacto-descripcion">Envía una queja, reclamo, consejo o comentario. Se abrirá tu aplicación de correo con los datos listos para revisar.</p>
+                <div class="contacto-directo">
+                    <a class="btn-pill btn-ghost" href="mailto:gestiotu@gmail.com">Correo</a>
+                    <a class="btn-pill btn-ghost" href="tel:+573214567890">Llamar</a>
+                    <a class="btn-pill btn-filled" href="https://wa.me/573214567890" target="_blank" rel="noopener noreferrer" data-whatsapp-quick>WhatsApp</a>
+                </div>
+
+                <form id="contacto-form" action="mailto:gestiotu@gmail.com" method="post" enctype="text/plain" aria-describedby="contacto-estado">
+
+
+                    <!-- NOMBRE -->
+
+                    <div class="campo-contacto">
+
+                        <label for="nombre">
+                            Nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            placeholder="Escribe tu nombre"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="campo-contacto">
+                        <label for="telefono">Número de contacto</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Ejemplo: +57 321 456 7890" autocomplete="tel" required>
+                    </div>
+
+                    <div class="campo-contacto">
+                        <label for="motivo">Motivo del mensaje</label>
+                        <select id="motivo" name="motivo" class="config-select" required>
+                            <option value="" disabled selected>Selecciona un motivo</option>
+                            <option value="Queja">Queja</option>
+                            <option value="Reclamo">Reclamo</option>
+                            <option value="Consejo o sugerencia">Consejo o sugerencia</option>
+                            <option value="Comentario positivo">Comentario positivo</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+
+                    <!-- CORREO -->
+
+                    <div class="campo-contacto">
+
+                        <label for="correo">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            id="correo"
+                            name="correo"
+                            placeholder="nombre123@correo.com (opcional)"
+                            autocomplete="email"
+                        >
+
+                    </div>
+
+
+                    <!-- SERVICIO -->
+
+                    <div class="campo-contacto">
+
+                        <label for="servicio">
+                            Servicio relacionado (opcional)
+                        </label>
+
+                        <input
+                            type="text"
+                            id="servicio"
+                            name="servicio"
+                            placeholder="Ejemplo: Tiempo, economía o alimentación"
+                        >
+
+                    </div>
+
+
+                    <!-- MENSAJE -->
+
+                    <div class="campo-contacto">
+
+                        <label for="mensaje">
+                            Mensaje
+                        </label>
+
+                        <textarea
+                            id="mensaje"
+                            name="mensaje"
+                            placeholder="Ejemplo: Tengo una pregunta sobre el servicio..."
+                            rows="5"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- BOTON -->
+
+                    <div class="contacto-acciones">
+                        <button type="submit" class="btn-pill btn-filled btn-enviar">Preparar mensaje</button>
+                        <button type="reset" class="btn-pill btn-ghost btn-limpiar">Limpiar</button>
+                    </div>
+
+                </form>
+                <p class="contacto-estado" id="contacto-estado" role="status" aria-live="polite"></p>
+
+            </section>
+
+
+            <!-- BARRA LATERAL -->
+
+            <div class="barra-contacto">
+
+                <div class="indicador-contacto"></div>
+
+            </div>
+
+        </main>
+
+
+        <!-- ==================================================
+             PIE DE PAGINA
+        =================================================== -->
+
+        <footer class="pie-pagina">
+
+
+            <!-- INFORMACION DE CONTACTO -->
+
+            <div class="datos-contacto">
+
+                <a href="tel:+573214567890">Tel: +57 (321) 456 7890</a>
+
+                <span>
+                    Dirección: Bogota D.C Clle 1, Cra. 8tva # 2 - 3
+                </span>
+
+                <a href="mailto:gestiotu@gmail.com">Correo: gestiotu@gmail.com</a>
+
+            </div>
+
+
+            <!-- REDES SOCIALES -->
+
+            <div class="redes">
+
+                <a href="https://wa.me/573214567890" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp" title="Escribir por WhatsApp">
+                    <i class="fab fa-whatsapp">
+                        <img src="IMG/png/whatsapp.png" alt="Whatsapp">
+                    </i>
+                </a>
+
+                <a href="https://www.facebook.com/sharer/sharer.php" target="_blank" rel="noopener noreferrer" data-facebook-share aria-label="Compartir GESTIOTU en Facebook" title="Compartir en Facebook">
+                    <i class="fab fa-facebook-f">
+                        <img src="IMG/png/facebook.png" alt="Facebook">
+                    </i>
+                </a>
+
+                <button type="button" data-instagram-share aria-label="Compartir GESTIOTU en Instagram" title="Compartir en Instagram">
+                    <i class="fab fa-instagram">
+                        <img src="IMG/png/instagram.png" alt="Instagram">
+                    </i>
+                </button>
+
+            </div>
+            <p class="social-status" data-social-status role="status" aria-live="polite"></p>
+
+        </footer>
+
+    </div>
+
+    <!-- Supabase JS (solo clave anon/publishable) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="JS/supabase-client.js"></script>
+    <script src="JS/supabase-data.js"></script>
+  <script src="JS/supabase-sync.js"></script>
+    <script src="JS/gestiotu.js"></script>
+</body>
+
+</html>

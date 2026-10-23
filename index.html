@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GESTIOTU</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;430;450;480;500&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="CSS/Styles.css">
+</head>
+
+<body id="principal">
+
+  <div class="pagina">
+
+    <!-- =========================
+         ENCABEZADO
+    ========================== -->
+    <header class="encabezado">
+
+      <!-- LOGO -->
+      <div class="logo">
+        <h1>GESTIOTU</h1>
+        <p>“Gestionamos tu vida.”</p>
+      </div>
+
+      <!-- MENU DE NAVEGACION -->
+      <nav class="menu">
+        <a href="index.html" aria-label="Inicio">
+          <div class="icono">
+            <img src="IMG/png/Inicio.png" alt="Inicio">
+          </div>
+          <span>INICIO</span>
+        </a>
+
+        <a href="contacto.html" aria-label="Contacto">
+          <div class="icono">
+            <img src="IMG/png/Contacto.png" alt="Contacto">
+          </div>
+          <span>CONTACTO</span>
+        </a>
+
+        <a href="configuracion.html" aria-label="Configuración">
+          <div class="icono">
+            <img src="IMG/png/Config.png" alt="Config">
+          </div>
+          <span>CONFIG</span>
+        </a>
+
+        <a href="sobre-nosotros.html" aria-label="Sobre nosotros">
+          <div class="icono">
+            <img src="IMG/png/Nosotros.png" alt="Nosotros">
+          </div>
+          <span>NOSOTROS</span>
+        </a>
+      </nav>
+
+    </header>
+
+    <!-- =========================
+         CONTENIDO PRINCIPAL
+    ========================== -->
+    <main class="contenido">
+
+      <!-- COLUMNA IZQUIERDA -->
+      <section class="columna-imagenes">
+
+        <figure class="cuadro-imagen card-floating">
+          <img src="IMG/Indeximg.avif" alt="Imagen principal de GESTIOTU">
+        </figure>
+
+        <figure class="cuadro-imagen2 card-floating">
+          <img src="IMG/Indeximg.avif" alt="Imagen secundaria de GESTIOTU">
+        </figure>
+
+      </section>
+
+      <!-- INFORMACION CENTRAL -->
+      <section class="informacion">
+
+        <h2>BIENVENIDO</h2>
+
+        <p class="subtitulo">
+          HERRAMIENTAS PARA TU DÍA A DÍA
+        </p>
+
+        <p class="texto-complementario">
+          Organiza tu tiempo, revisa tu presupuesto, encuentra ideas
+          para tus comidas y registra hábitos de bienestar desde un
+          solo lugar.
+        </p>
+
+        <p class="texto-complementario">
+          Elige una categoría para abrir su herramienta y una guía
+          breve. Tus datos se guardan en tu cuenta (o en este
+          dispositivo si no inicias sesión).
+        </p>
+
+      </section>
+
+      <!-- SEPARADOR -->
+      <div class="separador"></div>
+
+      <!-- BOTONES PRINCIPALES -->
+      <section class="seccion-botones">
+
+        <a href="servicios/tiempo.html" class="boton-principal btn-pill btn-filled" data-category-link="tiempo">
+          TIEMPO
+        </a>
+
+        <a href="servicios/economia.html" class="boton-principal btn-pill btn-filled" data-category-link="economia">
+          ECONOMÍA
+        </a>
+
+        <a href="servicios/alimentacion.html" class="boton-principal btn-pill btn-filled" data-category-link="alimentacion">
+          ALIMENTACIÓN
+        </a>
+
+        <a href="servicios/ejercicio.html" class="boton-principal btn-pill btn-filled" data-category-link="ejercicio">
+          EJERCICIO
+        </a>
+
+        <a href="servicios/salud.html" class="boton-principal btn-pill btn-filled" data-category-link="salud">
+          SALUD
+        </a>
+
+      </section>
+
+    </main>
+
+    <section class="inicio-guia" aria-labelledby="inicio-guia-title">
+      <div class="inicio-guia-heading">
+        <p class="caption muted">PRIMEROS PASOS</p>
+        <h2 id="inicio-guia-title">Cómo usar GESTIOTU</h2>
+      </div>
+      <ol class="inicio-guia-pasos">
+        <li><span>01</span><div><strong>Elige un servicio</strong><p>Abre Tiempo, Economía, Alimentación, Ejercicio o Salud desde los accesos o su tarjeta de categoría.</p></div></li>
+        <li><span>02</span><div><strong>Prueba su herramienta</strong><p>Calcula, registra o planifica con tus propios datos. Si inicias sesión, se guardan en tu cuenta; si no, solo en este navegador.</p></div></li>
+        <li><span>03</span><div><strong>Consulta fuentes externas</strong><p>Las noticias, festivos y enlaces informativos indican su fuente y requieren conexión a internet.</p></div></li>
+      </ol>
+    </section>
+
+    <!-- =========================
+         CONTENIDO POR CATEGORIA
+    ========================== -->
+    <section class="categorias" id="categorias-tiempo" data-category-section="tiempo">
+
+      <article class="categoria-block" id="seccion-tiempo">
+        <p class="caption muted">CATEGORÍA</p>
+        <h2 class="heading-lg">TIEMPO</h2>
+        <p class="body-lg texto-complementario">
+          Organiza tu día, prioriza tus tareas y aprovecha cada hora.
+          Aquí encuentras herramientas y consejos para una mejor
+          gestión del tiempo en tu vida diaria.
+        </p>
+        <a href="servicios/tiempo.html" class="service-link-card" data-category-link="tiempo">
+          <span class="service-link-copy"><span class="service-link-eyebrow">HERRAMIENTA PRÁCTICA</span><span class="service-link-title">Explorar tiempo</span></span>
+          <span class="service-link-arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+
+    </section>
+
+    <section class="categorias section-fog" id="seccion-economia" data-category-section="economia">
+
+      <article class="categoria-block">
+        <p class="caption muted">CATEGORÍA</p>
+        <h2 class="heading-lg">ECONOMÍA</h2>
+        <p class="body-lg texto-complementario">
+          Controla tus ingresos y gastos, planifica tu presupuesto
+          y toma decisiones financieras con claridad y confianza.
+        </p>
+        <a href="servicios/economia.html" class="service-link-card" data-category-link="economia">
+          <span class="service-link-copy"><span class="service-link-eyebrow">HERRAMIENTA PRÁCTICA</span><span class="service-link-title">Explorar economía</span></span>
+          <span class="service-link-arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+
+    </section>
+
+    <section class="categorias" id="categorias-alimentacion" data-category-section="alimentacion">
+
+      <article class="categoria-block" id="seccion-alimentacion">
+        <p class="caption muted">CATEGORÍA</p>
+        <h2 class="heading-lg titulo-alimentacion">ALIMENTACIÓN</h2>
+        <p class="body-lg texto-complementario">
+          Mejora tus hábitos alimenticios con guías prácticas,
+          recetas equilibradas e información sobre nutrición
+          para una vida más saludable.
+        </p>
+        <a href="servicios/alimentacion.html" class="service-link-card" data-category-link="alimentacion">
+          <span class="service-link-copy"><span class="service-link-eyebrow">HERRAMIENTA PRÁCTICA</span><span class="service-link-title">Explorar alimentación</span></span>
+          <span class="service-link-arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+
+    </section>
+
+    <section class="categorias section-fog" id="seccion-ejercicio" data-category-section="ejercicio">
+
+      <article class="categoria-block">
+        <p class="caption muted">CATEGORÍA</p>
+        <h2 class="heading-lg">EJERCICIO</h2>
+        <p class="body-lg texto-complementario">
+          Crea una rutina inicial, registra tus días activos y estima
+          el gasto de una sesión según tu peso y duración.
+        </p>
+        <a href="servicios/ejercicio.html" class="service-link-card" data-category-link="ejercicio">
+          <span class="service-link-copy"><span class="service-link-eyebrow">RUTINA Y SEGUIMIENTO</span><span class="service-link-title">Explorar ejercicio</span></span>
+          <span class="service-link-arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+
+    </section>
+
+    <section class="categorias section-fog" id="seccion-salud" data-category-section="salud">
+
+      <article class="categoria-block">
+        <p class="caption muted">CATEGORÍA</p>
+        <h2 class="heading-lg">SALUD</h2>
+        <p class="body-lg texto-complementario">
+          Encuentra información sobre bienestar físico y mental,
+          prevención y hábitos que fortalecen tu calidad de vida.
+        </p>
+        <a href="servicios/salud.html" class="service-link-card" data-category-link="salud">
+          <span class="service-link-copy"><span class="service-link-eyebrow">HERRAMIENTA PRÁCTICA</span><span class="service-link-title">Explorar salud</span></span>
+          <span class="service-link-arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+
+    </section>
+
+    <!-- =========================
+         PIE DE PAGINA
+    ========================== -->
+    <footer class="pie-pagina">
+
+      <!-- INFORMACION -->
+      <div class="datos-contacto">
+
+        <a href="tel:+573214567890">Tel: +57 (321) 456 7890</a>
+
+        <span>Dirección: Bogotá D.C Clle 1, Cra. 8tva # 2 - 3</span>
+
+        <a href="mailto:gestiotu@gmail.com">Correo: gestiotu@gmail.com</a>
+
+      </div>
+
+      <!-- REDES SOCIALES -->
+      <div class="redes">
+
+        <a href="https://wa.me/573214567890" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp" title="Escribir por WhatsApp">
+          <img src="IMG/png/whatsapp.png" alt="WhatsApp">
+        </a>
+
+        <a href="https://www.facebook.com/sharer/sharer.php" target="_blank" rel="noopener noreferrer" data-facebook-share aria-label="Compartir GESTIOTU en Facebook" title="Compartir en Facebook">
+          <img src="IMG/png/facebook.png" alt="Facebook">
+        </a>
+
+        <button type="button" data-instagram-share aria-label="Compartir GESTIOTU en Instagram" title="Compartir en Instagram">
+          <img src="IMG/png/instagram.png" alt="Instagram">
+        </button>
+
+      </div>
+      <p class="social-status" data-social-status role="status" aria-live="polite"></p>
+
+    </footer>
+
+  </div>
+
+  <!-- Supabase JS (solo clave anon/publishable) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="JS/supabase-client.js"></script>
+  <script src="JS/supabase-data.js"></script>
+  <script src="JS/supabase-sync.js"></script>
+  <script src="JS/gestiotu.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tiempo | GESTIOTU</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;430;450;480;500&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../CSS/Styles.css">
+</head>
+<body>
+	<div class="pagina">
+		<header class="encabezado">
+			<a class="logo" href="../index.html"><h1>GESTIOTU</h1><p>Tiempo</p></a>
+			<nav class="menu" aria-label="Navegación principal">
+				<a href="../index.html"><span>INICIO</span></a>
+				<a href="../contacto.html"><span>CONTACTO</span></a>
+				<a href="../configuracion.html"><span>CONFIG</span></a>
+				<a href="../sobre-nosotros.html"><span>NOSOTROS</span></a>
+			</nav>
+		</header>
+
+		<main class="service-page">
+			<nav class="service-breadcrumbs" aria-label="Ruta"><a href="../index.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Tiempo</span></nav>
+			<section class="service-hero">
+				<div class="service-intro">
+					<p class="service-eyebrow">TIEMPO · ENFOQUE</p>
+					<h2 class="service-heading">Una cosa a la vez.</h2>
+					<p class="service-lede">Convierte una tarea importante en un bloque breve de atención. Trabaja con intención, haz una pausa y continúa a tu ritmo.</p>
+					  <a class="btn-pill btn-ghost service-back" href="../index.html#categorias-tiempo">Volver a categorías</a>
+				</div>
+
+				<section class="service-widget timer-widget" data-timer-widget aria-labelledby="timer-title">
+					  <div class="service-widget-topline"><p id="timer-title">BLOQUE DE CONCENTRACIÓN</p><span>01 / 05</span></div>
+					<output class="timer-display" data-timer-display aria-live="off">25:00</output>
+					<progress class="timer-progress" data-timer-progress value="0" max="1500" aria-label="Progreso de la sesión"></progress>
+					<label class="service-field" for="timer-duration">Duración de la sesión <span>min</span></label>
+					<input class="service-number" id="timer-duration" data-timer-duration type="number" min="1" max="90" value="25" inputmode="numeric">
+					<div class="service-actions">
+						<button class="btn-pill btn-filled" type="button" data-timer-start>Iniciar</button>
+						<button class="btn-pill btn-ghost" type="button" data-timer-pause disabled>Pausar</button>
+						<button class="btn-pill btn-ghost" type="button" data-timer-reset>Reiniciar</button>
+					</div>
+					<p class="service-status" data-timer-status role="status" aria-live="polite">Elige una tarea y comienza cuando estés listo.</p>
+				</section>
+			</section>
+
+			<section class="time-planning-grid" aria-label="Calendario y horarios">
+				<section class="service-widget calendar-widget" data-calendar-widget aria-labelledby="calendar-title">
+					<div class="service-widget-topline"><p id="calendar-title">CALENDARIO ANUAL</p><span data-calendar-year></span></div>
+					<div class="calendar-month-control">
+						<button class="calendar-nav" type="button" data-calendar-prev aria-label="Mes anterior">←</button>
+						<h2 data-calendar-label></h2>
+						<button class="calendar-nav" type="button" data-calendar-next aria-label="Mes siguiente">→</button>
+					</div>
+					<p class="service-widget-note calendar-source-note">Festivos nacionales de Colombia · datos de <a href="https://date.nager.at/" target="_blank" rel="noopener noreferrer">Nager.Date</a>.</p>
+					<p class="service-status" data-calendar-holiday-status role="status" aria-live="polite">Cargando festivos del año…</p>
+					<div class="calendar-weekdays" aria-hidden="true"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+					<div class="calendar-days" data-calendar-days role="grid" aria-label="Días del mes"></div>
+					<form class="calendar-event-form" data-reminder-form>
+						<label class="service-field" for="reminder-title">Fecha importante o recordatorio<input class="service-number" id="reminder-title" name="title" type="text" maxlength="80" placeholder="Ejemplo: entregar trabajo" required></label>
+						<label class="service-field" for="reminder-date">Fecha y hora<input class="service-number" id="reminder-date" name="date" type="datetime-local" required></label>
+						<label class="service-field" for="reminder-kind">Tipo de fecha<select class="service-select" id="reminder-kind" name="kind"><option value="recordatorio">Recordatorio</option><option value="importante">Fecha importante o festividad</option></select></label>
+						<div class="service-actions">
+							<button class="btn-pill btn-filled" type="submit">Guardar fecha</button>
+							<button class="btn-pill btn-ghost" type="button" data-reminder-permission>Activar avisos</button>
+						</div>
+					</form>
+					<p class="service-status" data-calendar-status role="status" aria-live="polite">Tus fechas se guardan en tu cuenta (o en este dispositivo si no inicias sesión). Exporta cada recordatorio para recibir avisos aunque cierres esta página.</p>
+					<ul class="calendar-event-list" data-reminder-list aria-label="Próximas fechas"></ul>
+				</section>
+
+				<section class="service-widget schedule-widget" data-schedule-widget aria-labelledby="schedule-title">
+					<div class="service-widget-topline"><p id="schedule-title">HORARIO DEL DÍA</p><span>24 HORAS</span></div>
+					<p class="service-widget-note">Crea bloques por día. Las actividades se guardan en tu cuenta (o en este navegador si no has iniciado sesión).</p>
+					<form class="schedule-form" data-schedule-form>
+						<label class="service-field" for="schedule-activity">Actividad<input class="service-number" id="schedule-activity" name="activity" type="text" maxlength="60" placeholder="Ejemplo: estudiar" required></label>
+						<label class="service-field" for="schedule-day">Día<select class="service-select" id="schedule-day" name="day"><option value="0">Lunes</option><option value="1">Martes</option><option value="2">Miércoles</option><option value="3">Jueves</option><option value="4">Viernes</option><option value="5">Sábado</option><option value="6">Domingo</option></select></label>
+						<div class="schedule-times">
+							<label class="service-field" for="schedule-start">Desde<input class="service-number" id="schedule-start" name="start" type="time" value="09:00" required></label>
+							<label class="service-field" for="schedule-end">Hasta<input class="service-number" id="schedule-end" name="end" type="time" value="10:00" required></label>
+						</div>
+						<button class="btn-pill btn-filled" type="submit">Añadir al horario</button>
+					</form>
+					<p class="service-status" data-schedule-status role="status" aria-live="polite">Elige un día y una hora de inicio y fin.</p>
+					<ol class="schedule-list" data-schedule-list aria-label="Bloques programados"></ol>
+				</section>
+			</section>
+
+			<section class="service-guidance" aria-labelledby="time-guide-title">
+				<p class="service-eyebrow">UNA RUTINA SENCILLA</p>
+				<h2 id="time-guide-title">Dale espacio a lo importante.</h2>
+				<div class="service-steps">
+					<article><span>01</span><h3>Elige</h3><p>Escribe una tarea concreta que puedas avanzar durante esta sesión.</p></article>
+					<article><span>02</span><h3>Enfócate</h3><p>Deja a mano lo necesario y silencia las notificaciones que no sean urgentes.</p></article>
+					<article><span>03</span><h3>Haz una pausa</h3><p>Al terminar, levántate un momento y decide cuál es el siguiente paso.</p></article>
+				</div>
+			</section>
+		</main>
+
+		<footer class="pie-pagina">
+			<div class="datos-contacto"><a href="tel:+573214567890">Tel: +57 (321) 456 7890</a><span>Dirección: Bogotá D.C Clle 1, Cra. 8tva # 2 - 3</span><a href="mailto:gestiotu@gmail.com">Correo: gestiotu@gmail.com</a></div>
+			<a class="service-footer-link" href="../index.html">Volver al inicio <span aria-hidden="true">↑</span></a>
+		</footer>
+	</div>
+	<!-- Supabase JS (solo clave anon/publishable) -->
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	<script src="../JS/supabase-client.js"></script>
+	<script src="../JS/supabase-data.js"></script>
+  <script src="../JS/supabase-sync.js"></script>
+	<script src="../JS/gestiotu.js"></script>
+</body>
+</html>
