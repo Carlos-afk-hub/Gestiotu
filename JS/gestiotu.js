@@ -2,7 +2,11 @@
   const storageKey = "gestiotu.preferences.v1";
   const designStorageKey = "gestiotu.site-design.v1";
   // Capa de sincronización con Supabase (si está configurada).
-  const sync = window.gestiotuSync || null;
+  // OJO: se lee en vivo, no se captura una sola vez. gestiotuSync se crea
+  // de forma asíncrona, así que capturarlo al cargar este archivo dejaba un
+  // valor null congelado para siempre y la página decía "Supabase no está
+  // configurado" aunque estuviera perfectamente configurado.
+  const getSync = () => window.gestiotuSync || null;
   // Envoltorio de almacenamiento: escribe siempre en localStorage y, si hay
   // sesión iniciada, sincroniza con Supabase. Si no existe, usa localStorage puro.
   const store = window.gestiotuStore || window.localStorage;
