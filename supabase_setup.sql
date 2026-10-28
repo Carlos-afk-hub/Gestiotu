@@ -196,6 +196,37 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
 
+-- Impedir que un usuario se asigne el rol de administrador editando su perfil.
+create or replace function public.bloquear_cambio_rol_propio()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if session_user in ('postgres', 'supabase_admin') then
+    return new;
+  end if;
+
+  if new.role is distinct from old.role then
+    if not exists (
+      select 1
+      from public.profiles p
+      where p.id = auth.uid()
+        and p.role = 'admin'
+    ) then
+      raise exception 'No tienes permiso para cambiar tu propio rol.';
+    end if;
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists profiles_bloquear_cambio_rol on public.profiles;
+create trigger profiles_bloquear_cambio_rol
+  before update on public.profiles
+  for each row execute procedure public.bloquear_cambio_rol_propio();
+
 -- =====================================================
 -- ROW LEVEL SECURITY (RLS) - OBLIGATORIO CON CLAVE ANON
 -- =====================================================
@@ -407,3 +438,7 @@ revoke execute on function public.handle_new_user() from authenticated;
 revoke execute on function public.handle_updated_at() from public;
 revoke execute on function public.handle_updated_at() from anon;
 revoke execute on function public.handle_updated_at() from authenticated;
+
+revoke execute on function public.bloquear_cambio_rol_propio() from public;
+revoke execute on function public.bloquear_cambio_rol_propio() from anon;
+revoke execute on function public.bloquear_cambio_rol_propio() from authenticated;

@@ -50,10 +50,14 @@
   // ---------- AUTENTICACIÓN ----------
 
   const signUp = async (email, password, name) => {
+    const options = { data: { name } };
+    if (window.location.protocol === "http:" || window.location.protocol === "https:") {
+      options.emailRedirectTo = new URL("cuenta.html", window.location.href).href;
+    }
     const { data, error } = await sb.auth.signUp({
       email,
       password,
-      options: { data: { name } }
+      options
     });
     if (error) throw error;
     return data;

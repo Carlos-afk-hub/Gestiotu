@@ -26,22 +26,31 @@ const SUPABASE_CONFIGURED =
 // -----------------------------------------------------
 // CARGA RESISTENTE DE supabase-js
 // -----------------------------------------------------
-// El CDN puede tardar o fallar (red lenta, bloqueador, file://). Antes, si
-// window.supabase aún no existía, este archivo daba el cliente por perdido
-// y toda la app decía "Supabase no está configurado". Ahora reintentamos
-// cargando la librería por nuestra cuenta antes de rendirnos.
+// El SDK puede tardar o fallar (red lenta, bloqueador, file://). El bundle UMD
+// expone `supabase` como binding global, que no siempre es una propiedad de
+// window; hay que comprobar ambos sitios antes de cargar una alternativa.
 
 const SUPABASE_CDN_URLS = [
   "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2",
   "https://unpkg.com/@supabase/supabase-js@2"
 ];
 
+function getSupabaseNamespace() {
+  if (typeof supabase !== "undefined" && typeof supabase.createClient === "function") {
+    return supabase;
+  }
+  if (window.supabase && typeof window.supabase.createClient === "function") {
+    return window.supabase;
+  }
+  return null;
+}
+
 function loadSupabaseLibrary() {
   return new Promise((resolve) => {
     let index = 0;
 
     const tryNext = () => {
-      if (window.supabase && typeof window.supabase.createClient === "function") {
+      if (getSupabaseNamespace()) {
         return resolve(true);
       }
       if (index >= SUPABASE_CDN_URLS.length) return resolve(false);
@@ -50,7 +59,7 @@ function loadSupabaseLibrary() {
       script.src = SUPABASE_CDN_URLS[index++];
       script.async = false;
       script.onload = () => {
-        if (window.supabase && typeof window.supabase.createClient === "function") {
+        if (getSupabaseNamespace()) {
           resolve(true);
         } else {
           tryNext();
@@ -64,26 +73,27 @@ function loadSupabaseLibrary() {
   });
 }
 
-let supabase = null;
+let supabaseClient = null;
 
 // Crea el cliente una sola vez. Devuelve el cliente o null.
 function createClientIfPossible() {
-  if (supabase) return supabase;
+  if (supabaseClient) return supabaseClient;
   if (!SUPABASE_CONFIGURED) return null;
-  if (!(window.supabase && typeof window.supabase.createClient === "function")) return null;
+  const sdk = getSupabaseNamespace();
+  if (!sdk) return null;
   try {
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    supabaseClient = sdk.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   } catch (error) {
     console.error("[supabase-client] No se pudo crear el cliente Supabase.", error);
-    supabase = null;
+    supabaseClient = null;
   }
-  return supabase;
+  return supabaseClient;
 }
 
 // Publica el estado actual del cliente de forma coherente.
 function publish() {
-  window.gestiotuSupabase = supabase;
-  window.gestiotuSupabaseConfigured = Boolean(supabase);
+  window.gestiotuSupabase = supabaseClient;
+  window.gestiotuSupabaseConfigured = Boolean(supabaseClient);
 }
 
 // Se resuelve cuando el cliente está listo (o cuando se confirma que no se
@@ -98,13 +108,13 @@ const ready = (async () => {
     return null;
   }
 
-  // Camino rápido: la etiqueta <script> del CDN ya cargó la librería.
+  // Camino rápido: el SDK ya está disponible.
   if (createClientIfPossible()) {
     publish();
-    return supabase;
+    return supabaseClient;
   }
 
-  // Camino lento: la librería aún no está (o falló la etiqueta). La cargamos.
+  // Camino lento: la librería aún no está. La cargamos desde un CDN.
   const ok = await loadSupabaseLibrary();
   if (!ok) {
     console.error(
@@ -121,7 +131,7 @@ const ready = (async () => {
   // carga asíncrona y dejaban window.gestiotuSupabase en null para siempre:
   // eso era lo que rompía la conexión con Supabase.
   publish();
-  return supabase;
+  return supabaseClient;
 })();
 
 window.gestiotuSupabaseReady = ready;

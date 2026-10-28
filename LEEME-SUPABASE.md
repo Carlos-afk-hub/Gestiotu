@@ -59,7 +59,7 @@ order by tablename;
 
 Todas deben tener `rowsecurity = true`.
 
-## 5. Comprobar que funciona
+## 6. Comprobar que funciona
 
 1. Abre `index.html` en local (doble clic) o publica en Vercel.
 2. Prueba a registrar una cuenta desde `cuenta.html`. Al registrarte, se creará automáticamente un perfil en `profiles` (gracias al trigger).
@@ -69,7 +69,10 @@ Todas deben tener `rowsecurity = true`.
 > sesión, la web usa el `localStorage` del navegador (como antes). Cuando
 > inicias sesión, además se sube todo a Supabase y, si entras desde otro
 > dispositivo, se descarga desde Supabase. La primera vez que inicies sesión,
-> lo que ya tuvieras guardado en ese navegador se sube automáticamente.
+> lo que ya tuvieras guardado en ese navegador se sube automáticamente. Al
+> cerrar sesión o cambiar de cuenta, el caché local de la cuenta anterior se
+> limpia para evitar exponer o mezclar datos; los datos sincronizados permanecen
+> en Supabase.
 
 ## Notas importantes
 
@@ -92,7 +95,7 @@ where id = 'UUID-DEL-USUARIO-AQUI';
 - `JS/supabase-data.js` → Funciones para leer/escribir en las tablas (con `anon` + RLS).
 - `JS/supabase-sync.js` → Conecta la web con Supabase: envuelve `localStorage` (`window.gestiotuStore`), carga los datos al iniciar sesión y los sube al guardar.
 - `supabase_setup.sql` → Esquema completo (tablas + RLS + políticas + triggers).
-- CDN añadido en **todos** los HTML, en este orden: `@supabase/supabase-js@2` → `supabase-client.js` → `supabase-data.js` → `supabase-sync.js` → `gestiotu.js`.
+- `supabase-client.js` carga `@supabase/supabase-js@2` desde CDN con una alternativa de respaldo; el SDK se carga una sola vez antes de `supabase-data.js`, `supabase-sync.js` y `gestiotu.js`.
 
 ### Qué se guarda en Supabase (por usuario)
 

@@ -29,6 +29,10 @@ security definer
 set search_path = ''
 as $$
 begin
+  if session_user in ('postgres', 'supabase_admin') then
+    return new;
+  end if;
+
   if new.role is distinct from old.role then
     if not exists (
       select 1

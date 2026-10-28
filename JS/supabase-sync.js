@@ -40,6 +40,15 @@
   const WELLBEING_KEY = "gestiotu.wellbeing-week.v1";
   const FOOD_PREFIX = "gestiotu.food-log.";
   const EX_WEEK_PREFIX = "gestiotu.exercise-week.";
+  const SYNC_USER_KEY = "gestiotu.sync-user.v1";
+  const SYNCED_KEYS = new Set([
+    PREF_KEY,
+    DESIGN_KEY,
+    REMINDERS_KEY,
+    DAILY_KEY,
+    EX_SCHED_KEY,
+    WELLBEING_KEY
+  ]);
 
   // Referencias originales (las usamos internamente para no provocar bucles)
   const originalSet = window.localStorage.setItem.bind(window.localStorage);
@@ -75,12 +84,26 @@
   };
 
   const isLogged = () => Boolean(state.userId);
+  const isSyncedKey = (key) =>
+    SYNCED_KEYS.has(key) || key.startsWith(FOOD_PREFIX) || key.startsWith(EX_WEEK_PREFIX);
+
+  const clearSyncedLocalData = () => {
+    for (let index = window.localStorage.length - 1; index >= 0; index -= 1) {
+      const key = window.localStorage.key(index);
+      if (key && isSyncedKey(key)) originalRemove(key);
+    }
+  };
+
+  const clearPendingSync = () => {
+    if (state.flushTimer) window.clearTimeout(state.flushTimer);
+    state.flushTimer = null;
+    state.pending.clear();
+  };
 
   // ---------- Sincronizar una clave hacia Supabase ----------
 
-  const pushKey = async (key, value) => {
-    if (!isLogged()) return;
-    const uid = state.userId;
+  const pushKey = async (key, value, uid) => {
+    if (!uid || uid !== state.userId) return;
 
     if (key === PREF_KEY) {
       if (value === null) return D.deletePreferences(uid);
@@ -129,19 +152,20 @@
   };
 
   const scheduleFlush = (key, value) => {
-    state.pending.set(key, value);
     if (state.flushTimer) window.clearTimeout(state.flushTimer);
     state.flushTimer = window.setTimeout(async () => {
       const items = [...state.pending.entries()];
       state.pending.clear();
-      for (const [k, v] of items) {
+      state.flushTimer = null;
+      for (const [k, pending] of items) {
         try {
-          await pushKey(k, v);
+          await pushKey(k, pending.value, pending.userId);
         } catch (error) {
           console.error(`[supabase-sync] No se pudo sincronizar "${k}".`, error);
         }
       }
     }, 600);
+    state.pending.set(key, { value, userId: state.userId });
   };
 
   // ---------- Cargar datos desde Supabase hacia localStorage ----------
@@ -248,12 +272,23 @@
   const loadSession = async () => {
     const session = await D.getSession();
     if (!session || !session.user) {
+      if (originalGet(SYNC_USER_KEY)) {
+        clearPendingSync();
+        clearSyncedLocalData();
+      }
       state.userId = null;
       state.profile = null;
       return null;
     }
-    state.userId = session.user.id;
-    state.profile = await D.getProfile(session.user.id);
+    const userId = session.user.id;
+    const previousUserId = originalGet(SYNC_USER_KEY);
+    if (previousUserId && previousUserId !== userId) {
+      clearPendingSync();
+      clearSyncedLocalData();
+    }
+    originalSet(SYNC_USER_KEY, userId);
+    state.userId = userId;
+    state.profile = await D.getProfile(userId);
     return session.user;
   };
 
@@ -279,13 +314,14 @@
       return null;
     }
     // Escuchar cambios de sesión (login/logout) para re-hidratar.
-    D.onAuthChange(async () => {
-      try {
-        await loadSession();
-        await hydrateAll();
-      } catch (error) {
-        console.error("[supabase-sync] Error al reaccionar al cambio de sesión.", error);
-      }
+    D.onAuthChange(() => {
+      // Supabase mantiene un bloqueo mientras notifica el cambio de sesión.
+      // Diferir las llamadas Auth evita volver a entrar en ese bloqueo.
+      window.setTimeout(() => {
+        refresh().catch((error) => {
+          console.error("[supabase-sync] Error al reaccionar al cambio de sesión.", error);
+        });
+      }, 0);
     });
     await refresh();
     return state.profile;

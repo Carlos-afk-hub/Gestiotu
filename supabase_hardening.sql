@@ -1,9 +1,8 @@
 -- =====================================================
 -- GESTIOTU - ENDURECIMIENTO PENDIENTE
 -- =====================================================
--- Este es el único tramo de supabase_setup.sql que faltaba aplicar
--- en el proyecto en vivo. Es RE-EJECUTABLE: puedes correrlo cuantas
--- veces quieras sin errores.
+-- Este script aplica endurecimiento adicional y protección del rol.
+-- Es RE-EJECUTABLE: puedes correrlo cuantas veces quieras sin errores.
 --
 -- CÓMO USARLO:
 --   1. Abre el SQL Editor de tu proyecto:
@@ -17,7 +16,38 @@
 --      de la base de datos desde la API REST (/rest/v1/rpc/...).
 --   b) Fija el search_path de esas funciones (aviso de seguridad).
 --   c) Elimina 4 políticas duplicadas heredadas en time_reminders.
+--   d) Impide que un usuario se asigne el rol de administrador.
 -- =====================================================
+
+create or replace function public.bloquear_cambio_rol_propio()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if session_user in ('postgres', 'supabase_admin') then
+    return new;
+  end if;
+
+  if new.role is distinct from old.role then
+    if not exists (
+      select 1
+      from public.profiles p
+      where p.id = auth.uid()
+        and p.role = 'admin'
+    ) then
+      raise exception 'No tienes permiso para cambiar tu propio rol.';
+    end if;
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists profiles_bloquear_cambio_rol on public.profiles;
+create trigger profiles_bloquear_cambio_rol
+  before update on public.profiles
+  for each row execute procedure public.bloquear_cambio_rol_propio();
 
 -- -----------------------------------------------------
 -- a) Quitar permisos de ejecución a los roles del frontend
@@ -28,7 +58,7 @@
 
 revoke execute on function public.handle_new_user() from public, anon, authenticated;
 revoke execute on function public.handle_updated_at() from public, anon, authenticated;
-revoke execute on function public.rls_auto_enable() from public, anon, authenticated;
+revoke execute on function public.bloquear_cambio_rol_propio() from public, anon, authenticated;
 
 -- -----------------------------------------------------
 -- b) Fijar search_path (evita "Function Search Path Mutable")
@@ -39,6 +69,7 @@ revoke execute on function public.rls_auto_enable() from public, anon, authentic
 
 alter function public.handle_new_user() set search_path = '';
 alter function public.handle_updated_at() set search_path = '';
+alter function public.bloquear_cambio_rol_propio() set search_path = '';
 
 -- -----------------------------------------------------
 -- c) Borrar políticas duplicadas de time_reminders
@@ -60,7 +91,7 @@ drop policy if exists "time_reminders_delete_own" on public.time_reminders;
 -- select p.proname, has_function_privilege('anon', p.oid, 'EXECUTE') as anon_ejecuta
 -- from pg_proc p join pg_namespace n on n.oid = p.pronamespace
 -- where n.nspname = 'public'
---   and p.proname in ('handle_new_user','handle_updated_at','rls_auto_enable');
+--   and p.proname in ('handle_new_user','handle_updated_at','bloquear_cambio_rol_propio');
 -- -> todos en false
 --
 -- 2) time_reminders debe tener exactamente 4 políticas:
