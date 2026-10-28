@@ -7,6 +7,11 @@
   // valor null congelado para siempre y la página decía "Supabase no está
   // configurado" aunque estuviera perfectamente configurado.
   const getSync = () => window.gestiotuSync || null;
+  const waitForSync = async () => {
+    const sync = getSync();
+    if (sync && sync.ready) await sync.ready;
+    return getSync();
+  };
   // Envoltorio de almacenamiento: escribe siempre en localStorage y, si hay
   // sesión iniciada, sincroniza con Supabase. Si no existe, usa localStorage puro.
   const store = window.gestiotuStore || window.localStorage;
