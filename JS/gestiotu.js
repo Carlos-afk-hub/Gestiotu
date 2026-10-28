@@ -32,12 +32,12 @@
   };
   // Esperar a que la sincronización con Supabase esté lista (si está configurada),
   // para que los datos del usuario ya estén cargados antes de pintar la interfaz.
-  if (sync && sync.ready) {
-    try {
-      await sync.ready;
-    } catch (error) {
-      console.error("No se pudo inicializar la sincronización con Supabase.", error);
-    }
+  let sync;
+  try {
+    sync = await waitForSync();
+  } catch (error) {
+    console.error("No se pudo inicializar la sincronización con Supabase.", error);
+    sync = getSync();
   }
 
   const readDesign = () => {
