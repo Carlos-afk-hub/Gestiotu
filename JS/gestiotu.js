@@ -78,6 +78,7 @@
 
   const getCurrentAccount = () => {
     // La sesión la gestiona Supabase Auth; aquí solo leemos el perfil cargado.
+     const sync = getSync();
     if (sync && sync.profile) {
       return {
         id: sync.profile.id,
