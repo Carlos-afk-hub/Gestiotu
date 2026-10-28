@@ -2060,6 +2060,17 @@ html[data-custom-design="true"] .pagina h6 {
   font: inherit;
 }
 
+.account-text-button {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-sienna-brown);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .account-status {
   min-height: 1.5em;
   color: var(--color-sienna-brown);

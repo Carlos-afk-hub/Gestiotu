@@ -340,6 +340,8 @@
       await refresh();
       return data;
     },
+    requestPasswordReset: (email) => D.requestPasswordReset(email),
+    updatePassword: (password) => D.updatePassword(password),
     signUp: async (email, password, name) => {
       const data = await D.signUp(email, password, name);
       if (data && data.session) await refresh();

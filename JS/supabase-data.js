@@ -69,6 +69,21 @@
     return data;
   };
 
+  const requestPasswordReset = async (email) => {
+    const options = {};
+    if (window.location.protocol === "http:" || window.location.protocol === "https:") {
+      options.redirectTo = new URL("cuenta.html?restablecer=1", window.location.href).href;
+    }
+    const { error } = await sb.auth.resetPasswordForEmail(email, options);
+    if (error) throw error;
+  };
+
+  const updatePassword = async (password) => {
+    const { data, error } = await sb.auth.updateUser({ password });
+    if (error) throw error;
+    return data;
+  };
+
   const signOut = async () => {
     const { error } = await sb.auth.signOut();
     if (error) throw error;
@@ -404,6 +419,8 @@
     // auth
     signUp,
     signIn,
+    requestPasswordReset,
+    updatePassword,
     signOut,
     getSession,
     getUser,

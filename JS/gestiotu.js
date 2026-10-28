@@ -236,8 +236,11 @@
   if (accountPage) {
     const loginForm = accountPage.querySelector("[data-login-form]");
     const registerForm = accountPage.querySelector("[data-register-form]");
+    const passwordResetRequestForm = accountPage.querySelector("[data-password-reset-request-form]");
+    const passwordUpdateForm = accountPage.querySelector("[data-password-update-form]");
     const loginToggle = accountPage.querySelector("[data-show-login]");
     const registerToggle = accountPage.querySelector("[data-show-register]");
+    const accountTabs = accountPage.querySelector(".account-tabs");
 
     const syncReady = window.gestiotuSync && window.gestiotuSync.ready;
 
@@ -260,16 +263,30 @@
     }
 
     const showAccountForm = (formName) => {
-      const showRegister = formName === "register";
-      loginForm.hidden = showRegister;
-      registerForm.hidden = !showRegister;
-      loginToggle.setAttribute("aria-pressed", String(!showRegister));
-      registerToggle.setAttribute("aria-pressed", String(showRegister));
+      const isLogin = formName === "login";
+      const isRegister = formName === "register";
+      loginForm.hidden = !isLogin;
+      registerForm.hidden = !isRegister;
+      passwordResetRequestForm.hidden = formName !== "reset-request";
+      passwordUpdateForm.hidden = formName !== "reset-password";
+      accountTabs.hidden = !isLogin && !isRegister;
+      loginToggle.setAttribute("aria-pressed", String(isLogin));
+      registerToggle.setAttribute("aria-pressed", String(isRegister));
       setAccountStatus("");
     };
 
     loginToggle.addEventListener("click", () => showAccountForm("login"));
     registerToggle.addEventListener("click", () => showAccountForm("register"));
+    accountPage.querySelector("[data-show-password-reset]").addEventListener("click", () => {
+      const loginEmail = loginForm.elements.email.value.trim();
+      passwordResetRequestForm.elements.email.value = loginEmail;
+      showAccountForm("reset-request");
+    });
+    accountPage.querySelector("[data-back-to-login]").addEventListener("click", () => showAccountForm("login"));
+    if (new URLSearchParams(window.location.search).has("restablecer")) {
+      showAccountForm("reset-password");
+      setAccountStatus("Escribe tu nueva contraseña.");
+    }
 
     const requireSync = async () => {
       if (sync && sync.ready) {
@@ -320,6 +337,37 @@
       } catch (error) {
         console.error("No se pudo iniciar sesión.", error);
         setAccountStatus("Correo o contraseña incorrectos.");
+      }
+    });
+
+    passwordResetRequestForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!passwordResetRequestForm.reportValidity()) return;
+      if (!(await requireSync())) return;
+      const email = String(new FormData(passwordResetRequestForm).get("email")).trim().toLowerCase();
+      try {
+        await sync.requestPasswordReset(email);
+        setAccountStatus("Si existe una cuenta con ese correo, recibirás un enlace para cambiar la contraseña.");
+      } catch (error) {
+        console.error("No se pudo solicitar el cambio de contraseña.", error);
+        setAccountStatus(error.message || "No se pudo enviar el enlace. Inténtalo de nuevo.");
+      }
+    });
+
+    passwordUpdateForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!passwordUpdateForm.reportValidity()) return;
+      if (!(await requireSync())) return;
+      const password = String(new FormData(passwordUpdateForm).get("password"));
+      try {
+        await sync.updatePassword(password);
+        passwordUpdateForm.reset();
+        window.history.replaceState({}, "", window.location.pathname);
+        showAccountForm("login");
+        setAccountStatus("Contraseña actualizada. Ya puedes iniciar sesión.");
+      } catch (error) {
+        console.error("No se pudo actualizar la contraseña.", error);
+        setAccountStatus(error.message || "No se pudo actualizar la contraseña. Solicita un nuevo enlace.");
       }
     });
   }

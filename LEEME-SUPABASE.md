@@ -35,8 +35,9 @@ En **Authentication → URL Configuration**:
 
 1. Establece **Site URL** en el dominio de producción de Vercel (por ejemplo, `https://tu-proyecto.vercel.app`).
 2. Añade a **Redirect URLs** el dominio de producción seguido de `/cuenta.html`.
-3. Si usas previews de Vercel, añade también una regla compatible con sus dominios de preview, por ejemplo `https://tu-proyecto-*-tu-equipo.vercel.app/cuenta.html`; reemplázala por el patrón real de tu proyecto.
-4. Para pruebas locales, añade `http://localhost:*/cuenta.html`.
+3. Añade también la URL completa de recuperación, por ejemplo `https://tu-proyecto.vercel.app/cuenta.html?restablecer=1`, en **Redirect URLs**.
+4. Si usas previews de Vercel, añade también una regla compatible con sus dominios de preview, por ejemplo `https://tu-proyecto-*-tu-equipo.vercel.app/cuenta.html`; reemplázala por el patrón real de tu proyecto.
+5. Para pruebas locales, añade `http://localhost:*/cuenta.html` y `http://localhost:*/cuenta.html?restablecer=1`.
 
 El registro envía el enlace de confirmación a la página `cuenta.html` del dominio desde el que se registró el usuario. Supabase solo acepta destinos incluidos en **Redirect URLs**.
 
