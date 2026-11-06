@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Presentación de GESTIOTU: una plataforma de herramientas sencillas para organizar el tiempo, las finanzas y el bienestar cotidiano.">
+  <title>Presentación de GESTIOTU</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;430;450;480;500&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/Styles.css">
+
+  <style>
+    .presentacion-portada {
+      width: min(100% - clamp(40px, 10vw, 128px), 1200px);
+      margin: 0 auto;
+      padding: clamp(72px, 11vw, 150px) 0 clamp(80px, 10vw, 128px);
+    }
+
+    .presentacion-portada h2 {
+      max-width: 900px;
+      margin: 16px 0 24px;
+      font-family: var(--font-signifier);
+      font-size: clamp(48px, 9vw, 100px);
+      font-weight: var(--font-weight-regular);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .presentacion-portada .bajada {
+      max-width: 650px;
+      color: var(--color-slate-gray);
+      font-size: clamp(20px, 3vw, 28px);
+      line-height: 1.4;
+    }
+
+    .presentacion-acciones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .presentacion-acciones .btn-outline {
+      border-color: rgba(23, 25, 28, 0.18);
+      color: var(--color-ink-black);
+    }
+
+    .presentacion-seccion {
+      padding: clamp(64px, 9vw, 112px) clamp(20px, 6vw, 80px);
+    }
+
+    .presentacion-contenido {
+      width: min(100%, 1120px);
+      margin: 0 auto;
+    }
+
+    .presentacion-seccion h2 {
+      max-width: 760px;
+      margin: 12px 0 24px;
+      font-family: var(--font-signifier);
+      font-size: clamp(38px, 6vw, 64px);
+      font-weight: var(--font-weight-regular);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .presentacion-intro {
+      max-width: 720px;
+      color: var(--color-slate-gray);
+      font-size: var(--text-body-lg);
+      line-height: 1.55;
+    }
+
+    .presentacion-datos {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .presentacion-dato {
+      padding-top: 18px;
+      border-top: 1px solid rgba(23, 25, 28, 0.18);
+    }
+
+    .presentacion-dato h3,
+    .presentacion-tarjeta h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: var(--font-weight-w480);
+    }
+
+    .presentacion-dato p,
+    .presentacion-tarjeta p {
+      color: var(--color-slate-gray);
+      line-height: 1.55;
+    }
+
+    .presentacion-rejilla {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .presentacion-tarjeta {
+      min-height: 190px;
+      padding: clamp(22px, 4vw, 36px);
+      border-radius: var(--radius-cards);
+      background: var(--surface-card-mist);
+    }
+
+    .presentacion-tarjeta .numero {
+      display: block;
+      margin-bottom: 26px;
+      color: var(--color-slate-gray);
+      font-size: var(--text-caption);
+    }
+
+    .presentacion-servicios {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .presentacion-servicio {
+      min-height: 180px;
+      padding: 22px 18px;
+      border: 1px solid rgba(23, 25, 28, 0.12);
+      border-radius: var(--radius-smallcards);
+    }
+
+    .presentacion-servicio h3 {
+      margin-bottom: 12px;
+      font-family: var(--font-signifier);
+      font-size: 25px;
+      font-weight: var(--font-weight-regular);
+    }
+
+    .presentacion-servicio p {
+      color: var(--color-slate-gray);
+      font-size: var(--text-caption);
+      line-height: 1.5;
+    }
+
+    .presentacion-pasos {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .presentacion-pasos li {
+      padding-top: 18px;
+      border-top: 1px solid rgba(23, 25, 28, 0.18);
+    }
+
+    .presentacion-pasos span {
+      display: block;
+      margin-bottom: 18px;
+      color: var(--color-slate-gray);
+    }
+
+    .presentacion-pasos h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+      font-weight: var(--font-weight-w480);
+    }
+
+    .presentacion-pasos p,
+    .presentacion-nota {
+      color: var(--color-slate-gray);
+      line-height: 1.55;
+    }
+
+    .presentacion-cierre {
+      padding: clamp(64px, 9vw, 112px) 20px;
+      background: var(--surface-accent-blush);
+      text-align: center;
+    }
+
+    .presentacion-cierre h2 {
+      max-width: 780px;
+      margin: 12px auto 20px;
+      font-family: var(--font-signifier);
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: var(--font-weight-regular);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .presentacion-cierre p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--color-slate-gray);
+    }
+
+    .presentacion-cierre .presentacion-acciones {
+      justify-content: center;
+    }
+
+    main > section {
+      scroll-margin-top: 96px;
+    }
+
+    .presentacion-controles {
+      position: fixed;
+      right: clamp(16px, 3vw, 32px);
+      bottom: clamp(16px, 3vw, 32px);
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      border: 1px solid rgba(23, 25, 28, 0.12);
+      border-radius: 9999px;
+      background: var(--surface-elevated-white);
+      box-shadow: var(--shadow-subtle-2);
+    }
+
+    .presentacion-controles button {
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid rgba(23, 25, 28, 0.16);
+      border-radius: 9999px;
+      background: var(--surface-elevated-white);
+      color: var(--color-ink-black);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .presentacion-controles button:hover:not(:disabled) {
+      background: var(--color-mist-gray);
+    }
+
+    .presentacion-controles button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .presentacion-controles .control-pantalla {
+      border-color: var(--color-ink-black);
+      background: var(--color-ink-black);
+      color: var(--color-paper-white);
+    }
+
+    .presentacion-controles .control-pantalla:hover {
+      opacity: 0.86;
+      background: var(--color-ink-black);
+    }
+
+    .presentacion-estado {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .presentacion-servicios {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .presentacion-servicio:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .presentacion-controles {
+        right: 12px;
+        bottom: 12px;
+      }
+
+      .presentacion-controles button {
+        min-height: 42px;
+        padding: 0 12px;
+        font-size: 14px;
+      }
+
+      .presentacion-datos,
+      .presentacion-rejilla,
+      .presentacion-pasos {
+        grid-template-columns: 1fr;
+      }
+
+      .presentacion-servicios {
+        grid-template-columns: 1fr;
+      }
+
+      .presentacion-servicio:last-child {
+        grid-column: auto;
+      }
+    }
+
+    @media print {
+      .encabezado,
+      .pie-pagina,
+      .presentacion-controles,
+      .presentacion-acciones,
+      .presentacion-cierre .presentacion-acciones {
+        display: none !important;
+      }
+
+      .presentacion-portada,
+      .presentacion-seccion {
+        padding-top: 32px;
+        padding-bottom: 32px;
+      }
+
+      .presentacion-portada,
+      .presentacion-contenido {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pagina">
+    <nav class="presentacion-controles" aria-label="Controles de presentación">
+      <button type="button" id="seccion-anterior" aria-label="Ir a la sección anterior">← Anterior</button>
+      <button type="button" id="pantalla-completa" class="control-pantalla">Pantalla completa</button>
+      <button type="button" id="seccion-siguiente" aria-label="Ir a la sección siguiente">Siguiente →</button>
+    </nav>
+    <p class="presentacion-estado" id="presentacion-estado" role="status" aria-live="polite"></p>
+
+    <header class="encabezado">
+      <a class="logo" href="index.html" style="text-decoration: none;">
+        <h1>GESTIOTU</h1>
+        <p>Presentación del proyecto</p>
+      </a>
+
+      <nav class="menu" aria-label="Navegación principal">
+        <a href="index.html">
+          <div class="icono"><img src="IMG/png/Inicio.png" alt=""></div>
+          <span>INICIO</span>
+        </a>
+        <a href="contacto.html">
+          <div class="icono"><img src="IMG/png/Contacto.png" alt=""></div>
+          <span>CONTACTO</span>
+        </a>
+        <a href="configuracion.html">
+          <div class="icono"><img src="IMG/png/Config.png" alt=""></div>
+          <span>CONFIG</span>
+        </a>
+        <a href="sobre-nosotros.html">
+          <div class="icono"><img src="IMG/png/Nosotros.png" alt=""></div>
+          <span>NOSOTROS</span>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="presentacion-portada" aria-labelledby="presentacion-titulo">
+        <p class="caption muted">UNA IDEA PARA EL DÍA A DÍA</p>
+        <h2 id="presentacion-titulo">Más claridad para organizar tu vida.</h2>
+        <p class="bajada">GESTIOTU reúne herramientas prácticas de tiempo, economía y bienestar en una experiencia sencilla, accesible y pensada para las decisiones cotidianas.</p>
+        <div class="presentacion-acciones">
+          <a class="btn-pill btn-filled" href="index.html#categorias-tiempo">Conocer las herramientas</a>
+          <a class="btn-pill btn-outline" href="sobre-nosotros.html">Conocer el proyecto</a>
+        </div>
+      </section>
+
+      <section class="presentacion-seccion section-fog" aria-labelledby="propuesta-titulo">
+        <div class="presentacion-contenido">
+          <p class="caption muted">LA OPORTUNIDAD</p>
+          <h2 id="propuesta-titulo">Las tareas importantes suelen quedar repartidas entre muchas herramientas.</h2>
+          <p class="presentacion-intro">Planear el día, entender los gastos y sostener hábitos de cuidado personal son retos conectados. GESTIOTU propone acercar esos recursos en un mismo sitio, reduciendo pasos y ayudando a convertir intención en acción.</p>
+
+          <div class="presentacion-datos">
+            <article class="presentacion-dato">
+              <h3>Un punto de partida claro</h3>
+              <p>Accesos organizados por necesidades comunes, sin exigir experiencia previa.</p>
+            </article>
+            <article class="presentacion-dato">
+              <h3>Herramientas accionables</h3>
+              <p>Calcula, registra y planifica con funciones que se pueden probar directamente.</p>
+            </article>
+            <article class="presentacion-dato">
+              <h3>Información con contexto</h3>
+              <p>Guías y fuentes externas ayudan a orientar, sin reemplazar asesoría profesional.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="presentacion-seccion" aria-labelledby="servicios-titulo" id="servicios">
+        <div class="presentacion-contenido">
+          <p class="caption muted">UNA PLATAFORMA, CINCO ÁREAS</p>
+          <h2 id="servicios-titulo">Pequeños pasos para una rutina más organizada.</h2>
+          <p class="presentacion-intro">Cada categoría ofrece una herramienta práctica y contenido de apoyo. La experiencia puede empezar por una necesidad y crecer al ritmo de cada persona.</p>
+
+          <div class="presentacion-servicios">
+            <article class="presentacion-servicio">
+              <h3>Tiempo</h3>
+              <p>Temporizador, recordatorios, calendario y organización semanal.</p>
+            </article>
+            <article class="presentacion-servicio">
+              <h3>Economía</h3>
+              <p>Registro de ingresos y gastos, referencia 50/30/20 y conversor de divisas.</p>
+            </article>
+            <article class="presentacion-servicio">
+              <h3>Alimentación</h3>
+              <p>Planificación de comidas, registro de alimentos y referencias generales.</p>
+            </article>
+            <article class="presentacion-servicio">
+              <h3>Ejercicio</h3>
+              <p>Rutinas iniciales, registro semanal y estimaciones de actividad.</p>
+            </article>
+            <article class="presentacion-servicio">
+              <h3>Salud</h3>
+              <p>Registro de bienestar, recursos informativos y planificación de consultas.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="presentacion-seccion section-fog" aria-labelledby="diferencia-titulo">
+        <div class="presentacion-contenido">
+          <p class="caption muted">CARACTERÍSTICAS DEL PROYECTO</p>
+          <h2 id="diferencia-titulo">Diseñado para ser útil, claro y responsable.</h2>
+          <div class="presentacion-rejilla">
+            <article class="presentacion-tarjeta">
+              <span class="numero">01 / EXPERIENCIA</span>
+              <h3>Un solo lugar para empezar</h3>
+              <p>Una estructura sencilla agrupa necesidades relacionadas con la organización personal y la calidad de vida.</p>
+            </article>
+            <article class="presentacion-tarjeta">
+              <span class="numero">02 / ACCESO</span>
+              <h3>Flexible desde el primer uso</h3>
+              <p>Las herramientas guardan información en el dispositivo; al iniciar sesión, los datos compatibles pueden sincronizarse con la cuenta.</p>
+            </article>
+            <article class="presentacion-tarjeta">
+              <span class="numero">03 / CONTROL</span>
+              <h3>Preferencias personalizables</h3>
+              <p>La configuración permite adaptar tema, tamaño del texto, contraste y otras opciones de presentación.</p>
+            </article>
+            <article class="presentacion-tarjeta">
+              <span class="numero">04 / CONFIANZA</span>
+              <h3>Alcances transparentes</h3>
+              <p>Las estimaciones son orientativas: el sitio no diagnostica, no brinda asesoría financiera y señala cuándo depende de servicios externos.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="presentacion-seccion" aria-labelledby="crecimiento-titulo">
+        <div class="presentacion-contenido">
+          <p class="caption muted">POTENCIAL Y PRÓXIMOS PASOS</p>
+          <h2 id="crecimiento-titulo">Una base para validar, aprender y evolucionar.</h2>
+          <p class="presentacion-intro">GESTIOTU es un proyecto académico de diseño de interfaces web. Su oportunidad está en probar qué herramientas aportan más valor y mejorar la experiencia a partir de las necesidades reales de las personas.</p>
+          <ol class="presentacion-pasos">
+            <li>
+              <span>01</span>
+              <h3>Escuchar a las personas</h3>
+              <p>Validar necesidades, facilidad de uso y utilidad de cada categoría mediante pruebas y comentarios.</p>
+            </li>
+            <li>
+              <span>02</span>
+              <h3>Priorizar lo que funciona</h3>
+              <p>Medir uso y satisfacción para enfocar el desarrollo en las herramientas con mayor impacto cotidiano.</p>
+            </li>
+            <li>
+              <span>03</span>
+              <h3>Crecer con responsabilidad</h3>
+              <p>Fortalecer accesibilidad, privacidad y claridad de las fuentes antes de ampliar funcionalidades o servicios.</p>
+            </li>
+          </ol>
+          <p class="presentacion-nota" style="margin-top: 28px;">El modelo de sostenibilidad, la demanda y los resultados de mercado están por validar; esta presentación no presupone ingresos ni métricas comerciales.</p>
+        </div>
+      </section>
+
+      <section class="presentacion-cierre" aria-labelledby="cierre-titulo">
+        <p class="caption muted">GESTIOTU · “GESTIONAMOS TU VIDA”</p>
+        <h2 id="cierre-titulo">Organizarse mejor puede empezar con una sola decisión.</h2>
+        <p>Explora las herramientas y descubre cómo una experiencia clara puede apoyar tus objetivos cotidianos.</p>
+        <div class="presentacion-acciones">
+          <a class="btn-pill btn-filled" href="index.html">Explorar GESTIOTU</a>
+          <a class="btn-pill btn-outline" href="contacto.html">Conversemos</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie-pagina">
+      <div class="datos-contacto">
+        <a href="tel:+573214567890">Tel: +57 (321) 456 7890</a>
+        <span>Dirección: Bogotá D.C Clle 1, Cra. 8tva # 2 - 3</span>
+        <a href="mailto:gestiotu@gmail.com">Correo: gestiotu@gmail.com</a>
+      </div>
+      <div class="redes">
+        <a href="https://wa.me/573214567890" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp">
+          <img src="IMG/png/whatsapp.png" alt="WhatsApp">
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php" target="_blank" rel="noopener noreferrer" aria-label="Compartir GESTIOTU en Facebook">
+          <img src="IMG/png/facebook.png" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Instagram">
+          <img src="IMG/png/instagram.png" alt="Instagram">
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="JS/supabase-client.js"></script>
+  <script src="JS/supabase-data.js"></script>
+  <script src="JS/supabase-sync.js"></script>
+  <script src="JS/gestiotu.js"></script>
+  <script>
+    (() => {
+      const sections = Array.from(document.querySelectorAll("main > section"));
+      const previousButton = document.querySelector("#seccion-anterior");
+      const nextButton = document.querySelector("#seccion-siguiente");
+      const fullscreenButton = document.querySelector("#pantalla-completa");
+      const status = document.querySelector("#presentacion-estado");
+      let currentIndex = 0;
+      let scrollTimer;
+
+      const updateNavigation = () => {
+        previousButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === sections.length - 1;
+      };
+
+      const updateFullscreenButton = () => {
+        const isFullscreen = Boolean(document.fullscreenElement);
+        fullscreenButton.textContent = isFullscreen ? "Salir de pantalla completa" : "Pantalla completa";
+        fullscreenButton.setAttribute("aria-label", isFullscreen ? "Salir de pantalla completa" : "Activar pantalla completa");
+      };
+
+      const goToSection = (index) => {
+        currentIndex = Math.max(0, Math.min(index, sections.length - 1));
+        updateNavigation();
+        sections[currentIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      previousButton.addEventListener("click", () => goToSection(currentIndex - 1));
+      nextButton.addEventListener("click", () => goToSection(currentIndex + 1));
+
+      fullscreenButton.addEventListener("click", async () => {
+        try {
+          if (document.fullscreenElement) {
+            await document.exitFullscreen();
+          } else {
+            await document.documentElement.requestFullscreen();
+          }
+        } catch (error) {
+          console.error("No se pudo cambiar el modo de pantalla completa.", error);
+          status.textContent = "El navegador no permitió cambiar el modo de pantalla completa.";
+        }
+      });
+
+      document.addEventListener("fullscreenchange", updateFullscreenButton);
+      window.addEventListener("scroll", () => {
+        window.clearTimeout(scrollTimer);
+        scrollTimer = window.setTimeout(() => {
+          const sectionTops = sections.map((section) => section.getBoundingClientRect().top);
+          const visibleIndex = sectionTops.findIndex((top, index) =>
+            top <= 120 && (index === sections.length - 1 || sectionTops[index + 1] > 120)
+          );
+          if (visibleIndex !== -1) currentIndex = visibleIndex;
+          updateNavigation();
+        }, 100);
+      }, { passive: true });
+
+      updateNavigation();
+      updateFullscreenButton();
+    })();
+  </script>
+</body>
+
+</html>
