@@ -1842,6 +1842,20 @@ html[data-custom-design="true"] .pagina h6 {
   font-family: var(--site-font, var(--font-sohne));
 }
 
+/* El color de las letras se aplica al texto normal para que el cambio sea
+   visible aunque cada componente tenga su propio color de texto. */
+html[data-custom-design="true"] .pagina,
+html[data-custom-design="true"] .configuracion,
+html[data-custom-design="true"] .contacto {
+  background: var(--site-background, var(--surface-canvas));
+}
+
+html[data-custom-design="true"] body,
+html[data-custom-design="true"] .pagina,
+html[data-custom-design="true"] .pagina :where(p, li, label, strong, span, small, dt, dd, blockquote, figcaption, td, th) {
+  color: var(--site-text-color, var(--color-ink-black));
+}
+
 .site-account-controls {
   display: flex;
   align-items: center;
@@ -2243,6 +2257,42 @@ html[data-custom-design="true"] .pagina h6 {
 
 .config-select {
   width: clamp(160px, 20vw, 180px);
+}
+
+.config-colores {
+  display: grid;
+  gap: var(--spacing-8);
+  flex-shrink: 0;
+}
+
+.config-colores label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-12);
+  font-family: var(--font-sohne);
+  font-size: var(--text-caption);
+  color: var(--color-slate-gray);
+}
+
+.config-colores input[type="color"] {
+  width: 50px;
+  height: 36px;
+  padding: 2px;
+  border: 1px solid rgba(23, 25, 28, 0.2);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.config-colores input[type="color"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.config-acciones-colores {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .interruptor {

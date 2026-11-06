@@ -28,6 +28,7 @@
     useGradient: false,
     angle: "135",
     font: "inter",
+    textColor: "#17191c",
     headingColor: "#17191c"
   };
   // Esperar a que la sincronización con Supabase esté lista (si está configurada),
@@ -50,6 +51,7 @@
       useGradient: savedDesign.useGradient === true,
       angle: ["0", "45", "90", "135", "180"].includes(String(savedDesign.angle)) ? String(savedDesign.angle) : defaultDesign.angle,
       font: Object.hasOwn(allowedFonts, savedDesign.font) ? savedDesign.font : defaultDesign.font,
+      textColor: isColor(savedDesign.textColor) ? savedDesign.textColor : defaultDesign.textColor,
       headingColor: isColor(savedDesign.headingColor) ? savedDesign.headingColor : defaultDesign.headingColor
     };
   };
@@ -62,6 +64,7 @@
       root.style.removeProperty("--site-font");
       root.style.removeProperty("--font-sohne");
       root.style.removeProperty("--font-signifier");
+      root.style.removeProperty("--site-text-color");
       root.style.removeProperty("--site-heading-color");
       return;
     }
@@ -73,6 +76,7 @@
     root.style.setProperty("--site-font", allowedFonts[design.font] || allowedFonts.inter);
     root.style.setProperty("--font-sohne", allowedFonts[design.font] || allowedFonts.inter);
     root.style.setProperty("--font-signifier", allowedFonts[design.font] || allowedFonts.inter);
+    root.style.setProperty("--site-text-color", design.textColor || defaultDesign.textColor);
     root.style.setProperty("--site-heading-color", design.headingColor);
   };
 
@@ -94,6 +98,10 @@
     const status = document.querySelector("#account-status");
     if (status) status.textContent = message;
   };
+
+  // Permite que el editor del encabezado y la sección de Configuración
+  // mantengan sincronizados sus controles de color.
+  let refreshDesignColorControls = () => {};
 
   const installAccountControls = () => {
     const header = document.querySelector(".encabezado");
@@ -125,13 +133,14 @@
               <option value="trebuchet">Trebuchet MS</option>
             </select>
           </label>
+          <label>Color de las letras <input name="textColor" type="color" value="${defaultDesign.textColor}"></label>
           <label>Color de los títulos <input name="headingColor" type="color" value="${defaultDesign.headingColor}"></label>
           <p class="site-editor-status" role="status" aria-live="polite"></p>
           <div class="site-editor-actions">
             <button type="submit">Guardar diseño</button>
             <button type="button" data-reset-design>Restablecer</button>
           </div>
-          <p class="site-editor-notice">Los cambios se guardan en este navegador y no se publican para otros visitantes.</p>
+          <p class="site-editor-notice">Los cambios se guardan en tu cuenta (o en este navegador) y se aplican a todas las páginas.</p>
         </form>
       </details>`;
     header.append(controls);
@@ -149,7 +158,9 @@
       const account = getCurrentAccount();
       accountLink.textContent = account ? `Cuenta: ${account.name}` : "Iniciar sesión / Registro";
       logoutButton.hidden = !account;
-      editor.hidden = !account || account.role !== "admin";
+      // Cualquier usuario con la sesión iniciada puede personalizar su diseño.
+      editor.hidden = !account;
+      refreshDesignColorControls();
     };
 
     const fillEditor = (design) => {
@@ -191,6 +202,7 @@
       useGradient: gradientToggle.checked,
       angle: editorForm.elements.angle.value,
       font: editorForm.elements.font.value,
+      textColor: editorForm.elements.textColor.value,
       headingColor: editorForm.elements.headingColor.value
     });
 
@@ -203,6 +215,7 @@
       try {
         store.setItem(designStorageKey, JSON.stringify(design));
         applyDesign(design);
+        refreshDesignColorControls();
         editorStatus.textContent = "Diseño guardado para todas las páginas.";
       } catch (error) {
         console.error("No se pudo guardar el diseño.", error);
@@ -214,6 +227,7 @@
         store.removeItem(designStorageKey);
         fillEditor(defaultDesign);
         applyDesign(null);
+        refreshDesignColorControls();
         editorStatus.textContent = "Se restableció el diseño inicial.";
       } catch (error) {
         console.error("No se pudo restablecer el diseño.", error);
@@ -566,6 +580,114 @@
 
   applySettings(activeSettings);
 
+  // ---------- Colores del sitio (Configuración -> Apariencia) ----------
+  // Comparte el mismo almacenamiento que el editor del encabezado, así que
+  // cualquier cambio se refleja en ambos y se sincroniza con Supabase.
+  const designColorInputs = [...document.querySelectorAll("[data-design-color]")];
+  if (designColorInputs.length) {
+    const designGuestNotice = document.querySelector("[data-design-guest]");
+    const designActions = document.querySelector("[data-design-actions]");
+    const designStatus = document.querySelector("#colores-estado");
+    const saveDesignColors = document.querySelector("#guardar-colores");
+    const resetDesignColors = document.querySelector("#restablecer-colores");
+
+    const setDesignColorStatus = (message) => {
+      if (designStatus) designStatus.textContent = message;
+    };
+
+    const readDesignColorInputs = () => {
+      const colors = {};
+      designColorInputs.forEach((input) => {
+        colors[input.dataset.designColor] = input.value;
+      });
+      return colors;
+    };
+
+    const previewDesignColors = () => {
+      applyDesign({ ...(readDesign() || defaultDesign), ...readDesignColorInputs() });
+    };
+
+    const fillHeaderDesignEditor = (design) => {
+      const headerForm = document.querySelector(".site-editor-form");
+      if (!headerForm) return;
+      Object.entries(design).forEach(([key, value]) => {
+        const field = headerForm.elements[key];
+        if (!field) return;
+        if (field.type === "checkbox") field.checked = Boolean(value);
+        else field.value = value;
+      });
+      const secondColorLabel = document.querySelector(".site-second-color");
+      const angleLabel = document.querySelector(".site-gradient-angle");
+      if (secondColorLabel) secondColorLabel.hidden = !design.useGradient;
+      if (angleLabel) angleLabel.hidden = !design.useGradient;
+    };
+
+    refreshDesignColorControls = () => {
+      const account = getCurrentAccount();
+      const design = readDesign() || defaultDesign;
+      designColorInputs.forEach((input) => {
+        const key = input.dataset.designColor;
+        input.value = design[key] || defaultDesign[key];
+        input.disabled = !account;
+      });
+      if (designGuestNotice) designGuestNotice.hidden = Boolean(account);
+      if (designActions) designActions.hidden = !account;
+      if (saveDesignColors) saveDesignColors.disabled = !account;
+      if (resetDesignColors) resetDesignColors.disabled = !account;
+      if (!account) setDesignColorStatus("");
+    };
+
+    designColorInputs.forEach((input) => {
+      input.addEventListener("input", previewDesignColors);
+      input.addEventListener("change", previewDesignColors);
+    });
+
+    saveDesignColors?.addEventListener("click", () => {
+      if (!getCurrentAccount()) return;
+      const design = { ...(readDesign() || defaultDesign), ...readDesignColorInputs() };
+      try {
+        store.setItem(designStorageKey, JSON.stringify(design));
+        applyDesign(design);
+        fillHeaderDesignEditor(design);
+        refreshDesignColorControls();
+        setDesignColorStatus("Colores guardados y aplicados a todas las páginas.");
+      } catch (error) {
+        console.error("No se pudieron guardar los colores.", error);
+        setDesignColorStatus("No se pudieron guardar los colores. Revisa el almacenamiento del navegador.");
+      }
+    });
+
+    resetDesignColors?.addEventListener("click", () => {
+      if (!getCurrentAccount()) return;
+      try {
+        const savedDesign = readDesign();
+        if (savedDesign) {
+          const design = {
+            ...savedDesign,
+            background: defaultDesign.background,
+            secondColor: defaultDesign.secondColor,
+            useGradient: false,
+            textColor: defaultDesign.textColor,
+            headingColor: defaultDesign.headingColor
+          };
+          store.setItem(designStorageKey, JSON.stringify(design));
+          applyDesign(design);
+          fillHeaderDesignEditor(design);
+        } else {
+          store.removeItem(designStorageKey);
+          applyDesign(null);
+        }
+        refreshDesignColorControls();
+        setDesignColorStatus("Se restablecieron los colores iniciales.");
+      } catch (error) {
+        console.error("No se pudieron restablecer los colores.", error);
+        setDesignColorStatus("No se pudieron restablecer los colores.");
+      }
+    });
+
+    refreshDesignColorControls();
+  }
+
   window.addEventListener("storage", (event) => {
     if (event.key === designStorageKey || event.key === null) {
       try {
@@ -581,6 +703,7 @@
           document.querySelector(".site-second-color").hidden = !editorDesign.useGradient;
           document.querySelector(".site-gradient-angle").hidden = !editorDesign.useGradient;
         }
+        refreshDesignColorControls();
       } catch (error) {
         console.error("No se pudo sincronizar el diseño guardado.", error);
       }

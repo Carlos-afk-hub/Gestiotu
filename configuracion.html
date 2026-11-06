@@ -152,6 +152,29 @@
                         <div><label for="setting-theme"><strong>Tema</strong></label><p>Elige un tema claro, oscuro o según tu dispositivo.</p></div>
                         <select id="setting-theme" class="config-select" data-setting="theme"><option value="claro">Claro</option><option value="oscuro">Oscuro</option><option value="automatico">Automático</option></select>
                     </div>
+                    <div class="config-fila">
+                        <div>
+                            <strong>Colores del sitio</strong>
+                            <p>Elige el color del fondo, de las letras y de los títulos. Se aplican a todas las páginas.</p>
+                        </div>
+                        <div class="config-colores">
+                            <label for="color-fondo">Fondo <input id="color-fondo" type="color" data-design-color="background"></label>
+                            <label for="color-letras">Letras <input id="color-letras" type="color" data-design-color="textColor"></label>
+                            <label for="color-titulos">Títulos <input id="color-titulos" type="color" data-design-color="headingColor"></label>
+                        </div>
+                    </div>
+                    <div class="config-fila" data-design-guest hidden>
+                        <div>
+                            <strong>Personalización con cuenta</strong>
+                            <p>Inicia sesión para guardar tus colores en tu cuenta y verlos en cualquier dispositivo.</p>
+                        </div>
+                        <a class="btn-pill btn-ghost" href="cuenta.html">Iniciar sesión</a>
+                    </div>
+                    <div class="config-acciones config-acciones-colores" data-design-actions>
+                        <button type="button" class="btn-pill btn-filled" id="guardar-colores">Guardar colores</button>
+                        <button type="button" class="btn-pill btn-ghost" id="restablecer-colores">Restablecer colores</button>
+                    </div>
+                    <p class="config-estado" id="colores-estado" role="status" aria-live="polite"></p>
                 </section>
 
                 <section class="config-seccion" id="panel-contenido" data-config-section="contenido" hidden>
